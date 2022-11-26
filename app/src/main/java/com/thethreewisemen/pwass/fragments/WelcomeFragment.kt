@@ -20,6 +20,7 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Druk op de knop stuurt je door naar volgende bestemming
         view.findViewById<Button>(R.id.testButton).setOnClickListener {
             val action = WelcomeFragmentDirections.actionWelcomeFragmentToVolgendeFrag()
             view.findNavController().navigate(action)
