@@ -1,11 +1,9 @@
 package com.thethreewisemen.pwass.firestore
 
 import android.util.Log
-import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
-import com.thethreewisemen.pwass.Items.Post
+import com.thethreewisemen.pwass.objects.Post
 
 val TAG = "FIRESTORE"
 val postsCol = "Posts"
@@ -36,9 +34,9 @@ fun getPost(id: Int){
             post = document.toObject(Post::class.java)
             Log.d(TAG, post.toString())
         }
-        Log.d(TAG, "Retrieved post with id: ${id} and title: ${post?.titel}")
+        Log.d(TAG, "Retrieved post with id: $id and title: ${post?.titel}")
     }.addOnFailureListener {
-        Log.d(TAG, "Failed retrieving post with id: ${id}")
+        Log.d(TAG, "Failed retrieving post with id: $id")
     }
 }
 

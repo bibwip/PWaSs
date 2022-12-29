@@ -1,4 +1,4 @@
-package com.thethreewisemen.pwass.Items
+package com.thethreewisemen.pwass.objects
 
 import android.graphics.Bitmap
 
