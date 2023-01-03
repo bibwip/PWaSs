@@ -1,6 +1,7 @@
 package com.thethreewisemen.pwass.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.thethreewisemen.pwass.R
 import com.thethreewisemen.pwass.objects.Comment
 
-class CommentsAdapter(val context: Context, private val comments: List<Comment>) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
+class CommentsAdapter(val context: Context, private var comments: ArrayList<Comment>) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.comment, parent, false)
@@ -18,33 +19,39 @@ class CommentsAdapter(val context: Context, private val comments: List<Comment>)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val comment = comments[position]
-        holder.userName.text = comment.userName
-        holder.text.text = comment.text
-        if (comment.child.isNotEmpty()){
-            holder.child.layoutManager = LinearLayoutManager(context)
-            holder.child.adapter = InnerAdapter(comment.child)
+        if (comments.isNotEmpty()) {
+            val comment = comments[position]
+            holder.userName.text = comment.userName
+            holder.text.text = comment.text
+            if (comment.child.isNotEmpty()){
+                holder.child.layoutManager = LinearLayoutManager(context)
+                holder.child.adapter = InnerAdapter(comment.child)
+            }
         }
-
     }
 
     override fun getItemCount(): Int {
         return comments.size
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var text : TextView
-        var userName: TextView
-        var child : RecyclerView
-
-        init {
-            text = itemView.findViewById(R.id.testComText)
-            userName = itemView.findViewById(R.id.testComUser)
-            child = itemView.findViewById(R.id.testComList)
-        }
+    fun getItems() : ArrayList<Comment>{
+        return comments
     }
 
-    inner  class InnerAdapter(val childCom: List<Comment>) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
+    fun updateItems(newCom :ArrayList<Comment>) {
+        comments = newCom
+        notifyDataSetChanged()
+    }
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        val text : TextView = itemView.findViewById(R.id.testComText)
+        val userName : TextView= itemView.findViewById(R.id.testComUser)
+        val child: RecyclerView = itemView.findViewById(R.id.testComList)
+
+    }
+
+    inner  class InnerAdapter(private val childCom: List<Comment>) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.comment, parent, false)
@@ -52,14 +59,16 @@ class CommentsAdapter(val context: Context, private val comments: List<Comment>)
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            val comment = childCom[position]
-            holder.userName.text = comment.userName
-            holder.text.text = comment.text
-            if (comment.child.isNotEmpty()){
-                holder.child.layoutManager = LinearLayoutManager(context)
-                holder.child.adapter = CommentsAdapter(context, comment.child)
-            }
+            if (childCom.isNotEmpty()){
+                val comment = childCom[position]
+                holder.userName.text = comment.userName
 
+                holder.text.text = comment.text
+                if (comment.child.isNotEmpty()){
+                    holder.child.layoutManager = LinearLayoutManager(context)
+                    holder.child.adapter = CommentsAdapter(context, comment.child)
+                }
+            }
         }
 
         override fun getItemCount(): Int {
