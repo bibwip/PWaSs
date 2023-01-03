@@ -14,12 +14,10 @@ const val TAG = "FIRESTORE"
 const val postsCol = "Posts"
 const val comSecCol = "CommentSection"
 
-fun uploadPost(post: Post) : Boolean {
+fun uploadPost(post: Post)  {
     val db = Firebase.firestore
-    var succes = false
     db.collection(postsCol).add(post).addOnSuccessListener {
         Log.d(TAG, "Post geupload: \nid= ${post.id}\ntitel=${post.titel}\nuser=${post.naam_poster}")
-        succes = true
     }.addOnFailureListener {
         Log.d(
             TAG, "Post niet geupload: : \n" +
@@ -27,22 +25,6 @@ fun uploadPost(post: Post) : Boolean {
                     "titel=${post.titel}\n" +
                     "user=${post.naam_poster}"
         )
-    }
-    return succes
-}
-
-fun getPost(id: Int){
-    val db = Firebase.firestore
-    var post : Post ?= null
-
-    db.collection(postsCol).whereEqualTo("id",  id).get().addOnSuccessListener { documents ->
-        for (document in documents) {
-            post = document.toObject(Post::class.java)
-            Log.d(TAG, post.toString())
-        }
-        Log.d(TAG, "Retrieved post with id: $id and title: ${post?.titel}")
-    }.addOnFailureListener {
-        Log.d(TAG, "Failed retrieving post with id: $id")
     }
 }
 
@@ -53,10 +35,10 @@ fun getPosts(adapter : Any){
         for (doc in snapshot) {
             posts.add(doc.toObject(Post::class.java))
         }
-        //TODO adapter updaten
+        //adapter.updateItems(posts)
+        //TODO dit fixen
     }.addOnFailureListener {
         Log.d(TAG, "failed getting all posts")
-        //TODO adapter waarschuwen
     }
 }
 

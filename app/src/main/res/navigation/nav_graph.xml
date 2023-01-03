@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/testCommentsFragment">
+    app:startDestination="@id/welcomeFragment">
 
     <fragment
         android:id="@+id/welcomeFragment"
@@ -19,9 +19,4 @@
         android:name="com.thethreewisemen.pwass.fragments.VolgendeFrag"
         android:label="fragment_volgende"
         tools:layout="@layout/fragment_volgende" />
-    <fragment
-        android:id="@+id/testCommentsFragment"
-        android:name="com.thethreewisemen.pwass.TestCommentsFragment"
-        android:label="fragment_test_comments"
-        tools:layout="@layout/fragment_test_comments" />
 </navigation>
