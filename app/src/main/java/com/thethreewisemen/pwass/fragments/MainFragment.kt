@@ -1,21 +1,19 @@
-package com.thethreewisemen.pwass
+package com.thethreewisemen.pwass.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.thethreewisemen.pwass.R
+import com.thethreewisemen.pwass.adapters.RecyclerAdapter
 import com.thethreewisemen.pwass.objects.Post
-import kotlinx.android.synthetic.main.fragment_main.*
-import kotlinx.android.synthetic.main.post_view.*
 
-class mainFragment : Fragment() {
+class MainFragment : Fragment(R.layout.fragment_main) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var postList = mutableListOf(
+        val postList = arrayListOf(
             Post("test", "deze autist heeft hulp nodig", "HELP! ik krijg een autistische aanval", "autist420"),
             Post("test dos", "deze autist heeft hulp nodig", "HELP! ik krijg een autistische aanval", "autist420"),
             Post("test tre", "deze autist heeft hulp nodig", "HELP! ik krijg een autistische aanval", "autist420"),
@@ -23,18 +21,12 @@ class mainFragment : Fragment() {
             Post("test V", "deze autist heeft hulp nodig", "HELP! ik krijg een autistische aanval", "autist420"),
             Post("test seis", "deze autist heeft hulp nodig", "HELP! ik krijg een autistische aanval", "autist420"),
             Post("test kleven", "deze autist heeft hulp nodig", "HELP! ik krijg een autistische aanval", "autist420"),
-            Post("test gat", "deze autist heeft hulp nodig", "HELP! ik krijg een autistische aanval", "autist420"),
-
+            Post("test gat", "deze autist heeft hulp nodig", "HELP! ik krijg een autistische aanval", "autist420")
         )
 
         val adapter = RecyclerAdapter(postList)
-
-
-
-        val recycler = view.findViewById<RecyclerView>(R.id.postViews)
-
+        val recycler = view.findViewById<RecyclerView>(R.id.recyclerPosts)
         recycler.layoutManager = LinearLayoutManager(context)
-
         recycler.adapter = adapter
 
 

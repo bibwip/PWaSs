@@ -1,16 +1,12 @@
 package com.thethreewisemen.pwass
 
 import android.content.SharedPreferences
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import kotlinx.android.synthetic.main.fragment_main.*
-import kotlinx.android.synthetic.main.post_view.*
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,20 +24,20 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_graph_container) as NavHostFragment
         navController = navHostFragment.findNavController()
 
-        val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
-        prefs.edit().putBoolean(HASCUSTOMTHEME, true).apply()
-        prefs.edit().putString(COLORPRIMARY, "#34eb3d").apply()
-        prefs.edit().putString(COLORPRIMARYVAR, "#eb34d8").apply()
-        if (prefs.getBoolean(HASCUSTOMTHEME, false)) {
-            hasCustomTheme = true
-            Log.d(TAG, "has custom theme")
-            setColors(prefs)
-            Log.d(TAG, "prim col: $colorPrimary")
-        }
-       // checkFirstRun(prefs)
-
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(colorPrimary)))
-        window.statusBarColor = Color.parseColor(colorPrimaryVariant)
+//        val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+//        prefs.edit().putBoolean(HASCUSTOMTHEME, true).apply()
+//        prefs.edit().putString(COLORPRIMARY, "#34eb3d").apply()
+//        prefs.edit().putString(COLORPRIMARYVAR, "#eb34d8").apply()
+//        if (prefs.getBoolean(HASCUSTOMTHEME, false)) {
+//            hasCustomTheme = true
+//            Log.d(TAG, "has custom theme")
+//            setColors(prefs)
+//            Log.d(TAG, "prim col: $colorPrimary")
+//        }
+//       // checkFirstRun(prefs)
+//
+//        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(colorPrimary)))
+//        window.statusBarColor = Color.parseColor(colorPrimaryVariant)
 
     }
 

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/post_card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardBackgroundColor="#F8D496"
-    app:cardCornerRadius="7dp">
+    app:cardCornerRadius="7dp"
+    android:layout_margin="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp">
         <TextView
-            android:id="@+id/test_title"
+            android:id="@+id/postItemTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="vriend wil afspreken maar ik kan niet dus weten jullie hoe ik dat moet zeggen"
@@ -25,19 +25,19 @@
 
 
         <TextView
-            android:id="@+id/user_name"
+            android:id="@+id/postItemUserName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_toEndOf="@+id/test_title"
+            android:layout_toEndOf="@+id/postItemTitle"
             android:text="Anoniem"
             android:textSize="15sp"/>
 
         <TextView
-            android:id="@+id/test_content"
+            android:id="@+id/postItemBeschrijving"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/test_title"
+            android:layout_below="@+id/postItemTitle"
             android:layout_marginTop="0dp"
             android:text="dit is waar die ass mensen hun verhaal mogen neer zetten dus laten we dit een beetje lang maken voor de test" />
 
