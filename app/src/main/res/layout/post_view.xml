@@ -16,7 +16,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="vriend wil afspreken maar ik kan niet dus weten jullie hoe ik dat moet zeggen"
-            android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="20sp"
             android:maxWidth="300sp"

@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.post_view.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,7 +38,7 @@ class MainActivity : AppCompatActivity() {
             setColors(prefs)
             Log.d(TAG, "prim col: $colorPrimary")
         }
-        checkFirstRun(prefs)
+       // checkFirstRun(prefs)
 
         supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(colorPrimary)))
         window.statusBarColor = Color.parseColor(colorPrimaryVariant)
@@ -49,21 +51,21 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun checkFirstRun(prefs : SharedPreferences) {
-        // pakt de huidige versie en de bewaarde versie codes
-        val currentVersionCode = BuildConfig.VERSION_CODE
-        val savedVersionCode = prefs.getInt(PREF_VERSION_CODE_KEY, DOESNT_EXIST)
-
-        if (currentVersionCode == savedVersionCode) {
-            // niks nieuws
-            return
-        } else if (savedVersionCode == DOESNT_EXIST || currentVersionCode > savedVersionCode) {
-            // app voor het eerst geopend of nieuwe update
-            //navController.navigate(R.id.)
-        }
-        // bewaar huidige versie code
-        prefs.edit().putInt(PREF_VERSION_CODE_KEY, currentVersionCode).apply()
-    }
+//    private fun checkFirstRun(prefs : SharedPreferences) {
+//        // pakt de huidige versie en de bewaarde versie codes
+//        val currentVersionCode = BuildConfig.VERSION_CODE
+//        val savedVersionCode = prefs.getInt(PREF_VERSION_CODE_KEY, DOESNT_EXIST)
+//
+//        if (currentVersionCode == savedVersionCode) {
+//            // niks nieuws
+//            return
+//        } else if (savedVersionCode == DOESNT_EXIST || currentVersionCode > savedVersionCode) {
+//            // app voor het eerst geopend of nieuwe update
+//            //navController.navigate(R.id.)
+//        }
+//        // bewaar huidige versie code
+//        prefs.edit().putInt(PREF_VERSION_CODE_KEY, currentVersionCode).apply()
+//    }
 
     companion object {
         const val TAG = "epic"

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/mainFragment">
 
     <fragment
         android:id="@+id/welcomeFragment"
@@ -20,8 +20,8 @@
         android:label="fragment_volgende"
         tools:layout="@layout/fragment_volgende" />
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.thethreewisemen.pwass.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/mainFragment"
+        android:name="com.thethreewisemen.pwass.mainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
 </navigation>

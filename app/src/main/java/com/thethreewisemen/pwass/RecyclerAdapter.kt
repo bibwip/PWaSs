@@ -7,7 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.common.internal.FallbackServiceBroker
-import com.thethreewisemen.pwass.Items.Post
+import com.thethreewisemen.pwass.objects.Post
 
 class RecyclerAdapter (
     var posts: List<Post>
