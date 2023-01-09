@@ -32,7 +32,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         val prefColSec = findPreference<ColorPreference>("colorSec")
         val prefColBack = findPreference<ColorPreference>("colorBack")
         val prefColPost = findPreference<ColorPreference>("colorPost")
-        
+
         findPreference<PreferenceCategory>("colorCat")!!.isVisible = prefCustomTheme!!.isChecked
 
         prefCustomTheme.setOnPreferenceChangeListener { preference, _ ->
