@@ -21,7 +21,7 @@
         tools:layout="@layout/fragment_volgende" />
     <fragment
         android:id="@+id/addPostFragment"
-        android:name="com.thethreewisemen.pwass.AddPostFragment"
+        android:name="com.thethreewisemen.pwass.fragments.AddPostFragment"
         android:label="fragment_add_post"
         tools:layout="@layout/fragment_add_post" >
         <action

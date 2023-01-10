@@ -37,4 +37,5 @@
     <string name="colorSec">Secondary Color</string>
     <string name="colorBack">Background Color</string>
     <string name="colorPost">Post background Color</string>
+    <string name="apply">Apply theme changes</string>
 </resources>

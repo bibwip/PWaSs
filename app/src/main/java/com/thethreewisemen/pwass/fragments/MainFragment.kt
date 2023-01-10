@@ -8,6 +8,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.thethreewisemen.pwass.MainActivity
 import com.thethreewisemen.pwass.R
 import com.thethreewisemen.pwass.adapters.RecyclerAdapter
 import com.thethreewisemen.pwass.firestore.getPosts
@@ -18,7 +19,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val adapter = RecyclerAdapter(arrayListOf())
+        val adapter = RecyclerAdapter(arrayListOf(), (activity as MainActivity))
         val recycler = view.findViewById<RecyclerView>(R.id.recyclerPosts)
         val button = view.findViewById<FloatingActionButton>(R.id.mainAddPostBtn)
         val refresh = view.findViewById<Button>(R.id.mainRefreshBtn)

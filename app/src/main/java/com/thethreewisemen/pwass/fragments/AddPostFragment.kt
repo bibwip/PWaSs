@@ -1,13 +1,12 @@
-package com.thethreewisemen.pwass
+package com.thethreewisemen.pwass.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.navigation.findNavController
+import com.thethreewisemen.pwass.R
 import com.thethreewisemen.pwass.firestore.uploadPost
 import com.thethreewisemen.pwass.objects.Post
 

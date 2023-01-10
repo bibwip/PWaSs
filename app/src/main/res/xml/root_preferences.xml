@@ -1,13 +1,12 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory app:title="@string/appTheme">
-        <CheckBoxPreference
+        <SwitchPreference
             app:key="customTheme"
             app:title="@string/customTheme"
             />
         <PreferenceCategory
-            app:key="colorCat"
-            app:isPreferenceVisible="false">
+            app:key="colorCat">
             <com.thethreewisemen.pwass.objects.ColorPreference
                 app:key="colorPrimary"
                 app:title="@string/colorPrimary"
@@ -28,6 +27,9 @@
                 app:title="@string/colorPost"
                 app:layout="@layout/color_preference"
                 />
+            <com.thethreewisemen.pwass.objects.ButtonPreference
+                app:key="applyTheme"
+                app:layout="@layout/button_preference"/>
         </PreferenceCategory>
 
     </PreferenceCategory>

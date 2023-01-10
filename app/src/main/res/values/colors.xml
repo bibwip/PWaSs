@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF6200EE</color>
+    <color name="colorPrimary">#EE0000</color>
     <color name="colorPrimaryVariant">#FF3700B3</color>
+    <color name="colorBackground">#00DDD6</color>
+    <color name="colorPost">#FFE7BF</color>
+
     <color name="colorOnPrimary">#FFFFFFFF</color>
 
 
@@ -10,6 +13,7 @@
     <color name="colorOnSecondary">#FF000000</color>
 
     <color name="colorPrimaryDark">#FFBB86FC</color>
+    <color name="colorPostDark">#4F4F4F</color>
 
     <color name="test">#FF0000</color>
     <color name="test2">#F700FF</color>

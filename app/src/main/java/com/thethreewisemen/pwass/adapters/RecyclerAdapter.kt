@@ -1,16 +1,19 @@
 package com.thethreewisemen.pwass.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.view.menu.MenuView.ItemView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.thethreewisemen.pwass.MainActivity
 import com.thethreewisemen.pwass.R
 import com.thethreewisemen.pwass.objects.Post
 
-class RecyclerAdapter (
-    var posts: ArrayList<Post>
-    ) : RecyclerView.Adapter<RecyclerAdapter.PostViewHolder>() {
+class RecyclerAdapter (var posts: ArrayList<Post>, val main : MainActivity)
+    : RecyclerView.Adapter<RecyclerAdapter.PostViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.post_item, parent, false)
@@ -36,5 +39,10 @@ class RecyclerAdapter (
         val title : TextView = itemView.findViewById(R.id.postItemTitle)
         val name : TextView = itemView.findViewById(R.id.postItemUserName)
         val beschrijving : TextView = itemView.findViewById(R.id.postItemBeschrijving)
+        init {
+            if (main.hasCustomTheme) itemView.findViewById<CardView>(R.id.postCard)
+                    .setCardBackgroundColor(Color.parseColor(main.colorPost))
+        }
+
     }
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CardView.">
+        <item name="android:backgroundTint">@color/colorPost</item>
+    </style>
+
+    <style name="CardView.Dark.">
+        <item name="android:backgroundTint">@color/colorPostDark</item>
+    </style>
+
+</resources>
