@@ -1,12 +1,16 @@
 package com.thethreewisemen.pwass
 
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-
+import androidx.navigation.ui.onNavDestinationSelected
 
 
 class MainActivity : AppCompatActivity() {
@@ -14,6 +18,8 @@ class MainActivity : AppCompatActivity() {
     var hasCustomTheme = false
     var colorPrimary = ""
     var colorPrimaryVariant = ""
+    var colorBack = ""
+    var colorPost = ""
 
     private lateinit var navController : NavController
 
@@ -24,26 +30,35 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_graph_container) as NavHostFragment
         navController = navHostFragment.findNavController()
 
-//        val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
-//        prefs.edit().putBoolean(HASCUSTOMTHEME, true).apply()
-//        prefs.edit().putString(COLORPRIMARY, "#34eb3d").apply()
-//        prefs.edit().putString(COLORPRIMARYVAR, "#eb34d8").apply()
-//        if (prefs.getBoolean(HASCUSTOMTHEME, false)) {
-//            hasCustomTheme = true
-//            Log.d(TAG, "has custom theme")
-//            setColors(prefs)
-//            Log.d(TAG, "prim col: $colorPrimary")
-//        }
-//       // checkFirstRun(prefs)
-//
-//        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(colorPrimary)))
-//        window.statusBarColor = Color.parseColor(colorPrimaryVariant)
+        val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+
+        hasCustomTheme = (prefs.getBoolean(HASCUSTOMTHEME, false))
+        setColors(prefs)
+        //checkFirstRun(prefs)
+
+        if (hasCustomTheme){
+            supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(colorPrimary)))
+            window.statusBarColor = Color.parseColor(colorPrimaryVariant)
+        }
+
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+            return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
+    }
+
     private fun setColors(prefs: SharedPreferences){
-        colorPrimary = prefs.getString(COLORPRIMARY, "#eb4034")!!
-        colorPrimaryVariant = prefs.getString(COLORPRIMARYVAR, "#eb4034")!!
+
+        colorPrimary = prefs.getString(COLORPRIMARY, "#eb40ff34")!!
+        colorPrimaryVariant = prefs.getString(COLORPRIMARYVAR, "#eb403ff4")!!
+        colorBack = prefs.getString(COLORBACK, "#eb40ff34")!!
+        colorPost = prefs.getString(COLORPOST, "#eb4f0f34")!!
 
     }
 
@@ -70,9 +85,11 @@ class MainActivity : AppCompatActivity() {
         const val DOESNT_EXIST = -1
         const val PREFS_NAME = "MyPrefsFile"
 
-        private const val HASCUSTOMTHEME = "isCustomTheme"
-        private const val COLORPRIMARY = "colorPrimary"
-        private const val COLORPRIMARYVAR = "colorPrimaryVar"
+        const val HASCUSTOMTHEME = "isCustomTheme"
+        const val COLORPRIMARY = "colorPrimary"
+        const val COLORPRIMARYVAR = "colorPrimaryVar"
+        const val COLORBACK = "colorBack"
+        const val COLORPOST = "colorPost"
 
     }
 

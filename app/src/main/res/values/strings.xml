@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">PWaSs</string>
     <!-- TODO: Remove or change this placeholder text -->
+<<<<<<< HEAD
+=======
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="pickColor">Pick a color</string>
+
+>>>>>>> 1b1c5d691f15348c653eb51f5225c12d4f6ec6e7
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>
@@ -17,6 +24,7 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+<<<<<<< HEAD
 
     <string name="next"> Volgende</string>
 
@@ -25,4 +33,25 @@
     <string name="TutorialTekst"> Wil je een tutorial zien van hoe je de app moet gebruiken?</string>
     <string name="user"> Gebruikersnaam</string>
     <string name="add"> Toevoegen</string>
+=======
+    <string name="New_post">"New post "</string>
+    <string name="Post">New post</string>
+    <string name="Makepost">Make post</string>
+    <string name="Make">"Make post "</string>
+    <string name="Upload">"Upload "</string>
+    <string name="Uploadfoto">Upload</string>
+    <string name="Commentplek">Comment</string>
+    <string name="commentsplek">comments</string>
+    <string name="Addknop">Add</string>
+
+    <string name="settings">Settings</string>
+
+    <string name="appTheme">App theme</string>
+    <string name="customTheme">Custom theme</string>
+    <string name="colorPrimary">Primary Color</string>
+    <string name="colorSec">Secondary Color</string>
+    <string name="colorBack">Background Color</string>
+    <string name="colorPost">Post background Color</string>
+    <string name="apply">Apply theme changes</string>
+>>>>>>> 1b1c5d691f15348c653eb51f5225c12d4f6ec6e7
 </resources>
