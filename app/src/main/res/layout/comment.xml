@@ -17,7 +17,7 @@
         android:layout_margin="5dp">
 
         <TextView
-            android:id="@+id/Username_ding"
+            android:id="@+id/comUsernameTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
@@ -27,11 +27,11 @@
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/Profile_pic"
+            app:layout_constraintStart_toEndOf="@+id/comPFImg"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/Profile_pic"
+            android:id="@+id/comPFImg"
             android:layout_width="49dp"
             android:layout_height="56dp"
             android:layout_marginTop="16dp"
@@ -40,7 +40,7 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/testComList"
+            android:id="@+id/comRecComments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
@@ -48,10 +48,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Comments" />
+            app:layout_constraintTop_toBottomOf="@+id/comContentTv" />
 
         <TextView
-            android:id="@+id/Comments"
+            android:id="@+id/comContentTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
@@ -61,11 +61,12 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/Profile_pic"
-            app:layout_constraintTop_toBottomOf="@+id/Username_ding" />
+            app:layout_constraintStart_toEndOf="@+id/comPFImg"
+            app:layout_constraintTop_toBottomOf="@+id/comUsernameTv" />
+
 
         <ImageButton
-            android:id="@+id/Respond_button"
+            android:id="@+id/comReplyBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="310dp"
@@ -74,7 +75,7 @@
             android:scaleX="0.4"
             android:scaleY="0.4"
             android:src="@drawable/ic_reply"
-            app:layout_constraintStart_toStartOf="@+id/testComList"
+            app:layout_constraintStart_toStartOf="@+id/comRecComments"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
 
@@ -88,11 +89,10 @@
             android:contentDescription="@string/likeknop"
             android:scaleX="0.3"
             android:scaleY="0.3"
+
             android:src="@drawable/ic_like"
-            app:layout_constraintBottom_toBottomOf="@+id/testComList"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.631" />
+            app:layout_constraintBottom_toBottomOf="@+id/comRecComments"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

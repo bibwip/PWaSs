@@ -6,6 +6,8 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
 import android.util.Log
+import android.view.View.OnClickListener
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.preference.Preference
@@ -13,23 +15,21 @@ import androidx.preference.PreferenceViewHolder
 import com.thethreewisemen.pwass.R
 
 
-class ColorPreference(context: Context, attrs: AttributeSet) :
+class ButtonPreference(context: Context, attrs: AttributeSet) :
     Preference(context, attrs) {
-    private var imageView: ImageView? = null
-    private var textView: TextView? = null
-    private var bcolor: Int = 0xFFFF000
+    private var button: Button? = null
+    private var listener: OnClickListener? = null
+
 
     //onBindViewHolder() will be called after we call setImageClickListener() from SettingsFragment
     override fun onBindViewHolder(holder: PreferenceViewHolder) {
         super.onBindViewHolder(holder)
-        imageView = holder.findViewById(R.id.prefsColorImg) as ImageView?
-        textView = holder.findViewById(R.id.prefsColorText) as TextView?
-        imageView?.setImageDrawable(ColorDrawable(bcolor))
-        textView?.text = title
+        button = holder.findViewById(R.id.prefButton) as Button?
+        button?.setOnClickListener(listener)
+
     }
 
-    fun setColor(color : Int) {
-        bcolor = color
-        notifyChanged()
+    fun setClickListener(listen : OnClickListener) {
+       listener = listen
     }
 }

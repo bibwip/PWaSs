@@ -15,7 +15,7 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val button = view.findViewById<Button>(R.id.testButton)
+        val button = view.findViewById<Button>(R.id.volgendeBtnWel)
         val main = (activity as MainActivity)
         Log.d("epic", "in welcome fragment")
         if (main.hasCustomTheme) {

@@ -45,13 +45,13 @@ class CommentsAdapter(val context: Context, private var comments: ArrayList<Comm
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val text : TextView = itemView.findViewById(R.id.testComText)
-        val userName : TextView= itemView.findViewById(R.id.testComUser)
-        val child: RecyclerView = itemView.findViewById(R.id.testComList)
+        val text : TextView = itemView.findViewById(R.id.comContentTv)
+        val userName : TextView= itemView.findViewById(R.id.comUsernameTv)
+        val child: RecyclerView = itemView.findViewById(R.id.comRecComments)
 
     }
 
-    inner  class InnerAdapter(private val childCom: List<Comment>) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
+    private inner class InnerAdapter(private val childCom: List<Comment>) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.comment, parent, false)

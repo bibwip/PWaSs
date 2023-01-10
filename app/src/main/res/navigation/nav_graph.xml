@@ -18,12 +18,23 @@
         android:id="@+id/volgendeFrag"
         android:name="com.thethreewisemen.pwass.fragments.VolgendeFrag"
         android:label="fragment_volgende"
-        tools:layout="@layout/fragment_volgende" />
+        tools:layout="@layout/fragment_volgende" >
+        <action
+            android:id="@+id/action_volgendeFrag_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_volgendeFrag_to_tutorialFragment"
+            app:destination="@id/tutorialFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addPostFragment"
-        android:name="com.thethreewisemen.pwass.AddPostFragment"
+        android:name="com.thethreewisemen.pwass.fragments.AddPostFragment"
         android:label="fragment_add_post"
-        tools:layout="@layout/fragment_add_post" />
+        tools:layout="@layout/fragment_add_post" >
+        <action
+            android:id="@+id/action_addPostFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.thethreewisemen.pwass.fragments.SettingsFragment"
@@ -32,10 +43,29 @@
         android:id="@+id/mainFragment"
         android:name="com.thethreewisemen.pwass.fragments.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
-    <fragment
-        android:id="@+id/postFragment"
-        android:name="com.thethreewisemen.pwass.PostFragment"
-        android:label="fragment_post"
-        tools:layout="@layout/fragment_post" />
+
+        tools:layout="@layout/fragment_main" >
+
+
+
+
+
+        <action
+            android:id="@+id/action_mainFragment_to_addPostFragment"
+            app:destination="@id/addPostFragment" />
+    </fragment>
+
+<fragment
+android:id="@+id/postFragment"
+android:name="com.thethreewisemen.pwass.fragments.PostFragment"
+android:label="fragment_post"
+tools:layout="@layout/fragment_post" />
+
+<fragment
+android:id="@+id/tutorialFragment"
+android:name="com.thethreewisemen.pwass.tutorialFragment"
+android:label="fragment_tutorial"
+tools:layout="@layout/fragment_tutorial" />
+
+
 </navigation>

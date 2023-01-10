@@ -8,6 +8,7 @@
     app:cardBackgroundColor="#F8D496"
     app:cardCornerRadius="7dp">
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -1,22 +1,24 @@
 package com.thethreewisemen.pwass.fragments
 
-import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.CheckBoxPreference
-import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.SwitchPreference
 import com.flask.colorpicker.ColorPickerView
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder
 import com.thethreewisemen.pwass.MainActivity
-import com.thethreewisemen.pwass.R
-import com.thethreewisemen.pwass.objects.ColorPreference
 import com.thethreewisemen.pwass.MainActivity.Companion.COLORBACK
-import com.thethreewisemen.pwass.MainActivity.Companion.COLORPRIMARYVAR
 import com.thethreewisemen.pwass.MainActivity.Companion.COLORPOST
 import com.thethreewisemen.pwass.MainActivity.Companion.COLORPRIMARY
+import com.thethreewisemen.pwass.MainActivity.Companion.COLORPRIMARYVAR
+import com.thethreewisemen.pwass.R
+import com.thethreewisemen.pwass.objects.ButtonPreference
+import com.thethreewisemen.pwass.objects.ColorPreference
 
 
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -27,7 +29,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
         val prefs = requireActivity().getSharedPreferences(MainActivity.PREFS_NAME, AppCompatActivity.MODE_PRIVATE)
         val main = activity as MainActivity
 
-        val prefCustomTheme = findPreference<CheckBoxPreference>("customTheme")
+        val prefCustomTheme = findPreference<SwitchPreference>("customTheme")
+        val prefApply = findPreference<ButtonPreference>("applyTheme")
         val prefColPri = findPreference<ColorPreference>("colorPrimary")
         val prefColSec = findPreference<ColorPreference>("colorSec")
         val prefColBack = findPreference<ColorPreference>("colorBack")
@@ -35,13 +38,20 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         findPreference<PreferenceCategory>("colorCat")!!.isVisible = prefCustomTheme!!.isChecked
 
-        prefCustomTheme.setOnPreferenceChangeListener { preference, _ ->
+        prefApply?.setClickListener(View.OnClickListener {
+            val refresh = Intent(activity, MainActivity::class.java)
+            startActivity(refresh)
+        })
+
+        prefCustomTheme.setOnPreferenceChangeListener { preference, n ->
             findPreference<PreferenceCategory>("colorCat")!!.isVisible =
                 !findPreference<PreferenceCategory>("colorCat")!!.isVisible
-
-            prefs.edit().putBoolean(MainActivity.HASCUSTOMTHEME, preference.isEnabled).apply()
-
+            prefs.edit().putBoolean(MainActivity.HASCUSTOMTHEME, n.toString().toBoolean()).apply()
             true
+        }
+
+        if (prefCustomTheme.isChecked){
+            prefColPri!!.setColor(Color.parseColor(main.colorPrimary))
         }
 
         prefColPri!!.setOnPreferenceClickListener {
