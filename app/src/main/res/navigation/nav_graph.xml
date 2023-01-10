@@ -33,4 +33,9 @@
         android:name="com.thethreewisemen.pwass.fragments.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/postFragment"
+        android:name="com.thethreewisemen.pwass.PostFragment"
+        android:label="fragment_post"
+        tools:layout="@layout/fragment_post" />
 </navigation>
