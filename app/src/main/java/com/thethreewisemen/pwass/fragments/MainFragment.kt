@@ -1,9 +1,12 @@
 package com.thethreewisemen.pwass.fragments
 
+
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Button
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +15,7 @@ import com.thethreewisemen.pwass.MainActivity
 import com.thethreewisemen.pwass.R
 import com.thethreewisemen.pwass.adapters.RecyclerAdapter
 import com.thethreewisemen.pwass.firestore.getPosts
-import com.thethreewisemen.pwass.objects.Post
+
 
 class MainFragment : Fragment(R.layout.fragment_main) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,6 +37,15 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         refresh.setOnClickListener {
             getPosts(adapter)
         }
+
+        val main = (activity as MainActivity)
+
+        if (main.hasCustomTheme) {
+            refresh.background.setTint(Color.parseColor(main.colorPrimary))
+
+            //button.backgroundTintList = ColorStateList.valueOf(main.colorPrimary);
+        }
+
 
 
 

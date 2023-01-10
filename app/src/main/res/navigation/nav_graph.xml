@@ -43,18 +43,19 @@
         android:id="@+id/mainFragment"
         android:name="com.thethreewisemen.pwass.fragments.MainFragment"
         android:label="fragment_main"
-<<<<<<< HEAD
-        tools:layout="@layout/fragment_main" />
-    <fragment
-        android:id="@+id/tutorialFragment"
-        android:name="com.thethreewisemen.pwass.tutorialFragment"
-        android:label="fragment_tutorial"
-        tools:layout="@layout/fragment_tutorial" />
-=======
         tools:layout="@layout/fragment_main" >
+
+
+
         <action
             android:id="@+id/action_mainFragment_to_addPostFragment"
             app:destination="@id/addPostFragment" />
     </fragment>
->>>>>>> 1b1c5d691f15348c653eb51f5225c12d4f6ec6e7
+
+<fragment
+android:id="@+id/tutorialFragment"
+android:name="com.thethreewisemen.pwass.tutorialFragment"
+android:label="fragment_tutorial"
+tools:layout="@layout/fragment_tutorial" />
+
 </navigation>
