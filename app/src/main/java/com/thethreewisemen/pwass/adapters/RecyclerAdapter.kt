@@ -27,6 +27,11 @@ class RecyclerAdapter (
         return posts.size
     }
 
+    fun updateItems(items : ArrayList<Post>) {
+        posts = items
+        notifyDataSetChanged()
+    }
+
     inner class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title : TextView = itemView.findViewById(R.id.postItemTitle)
         val name : TextView = itemView.findViewById(R.id.postItemUserName)

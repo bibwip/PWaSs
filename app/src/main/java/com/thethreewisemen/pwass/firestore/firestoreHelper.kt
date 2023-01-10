@@ -4,6 +4,7 @@ import android.util.Log
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.thethreewisemen.pwass.adapters.CommentsAdapter
+import com.thethreewisemen.pwass.adapters.RecyclerAdapter
 import com.thethreewisemen.pwass.objects.Comment
 import com.thethreewisemen.pwass.objects.CommentSection
 import com.thethreewisemen.pwass.objects.Post
@@ -28,15 +29,14 @@ fun uploadPost(post: Post)  {
     }
 }
 
-fun getPosts(adapter : Any){
+fun getPosts(adapter : RecyclerAdapter){
     val posts = arrayListOf<Post>()
     val query = Firebase.firestore.collection(postsCol)
     query.get().addOnSuccessListener { snapshot ->
         for (doc in snapshot) {
             posts.add(doc.toObject(Post::class.java))
         }
-        //adapter.updateItems(posts)
-        //TODO dit fixen
+        adapter.updateItems(posts)
     }.addOnFailureListener {
         Log.d(TAG, "failed getting all posts")
     }
