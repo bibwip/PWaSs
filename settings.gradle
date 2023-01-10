@@ -1,9 +1,12 @@
 pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
+
+
+        repositories {
+            gradlePluginPortal()
+            google()
+            mavenCentral()
+        }
+
 
     resolutionStrategy {
         eachPlugin {
@@ -13,6 +16,19 @@ pluginManagement {
         }
     }
 }
+
+dependencyResolutionManagement {
+
+        repositories {
+            maven {
+                url "https://jitpack.io"
+            }
+        }
+
+}
+
+
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {

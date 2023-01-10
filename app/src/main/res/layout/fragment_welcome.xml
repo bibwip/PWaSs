@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".fragments.WelcomeFragment">
 
-<!--    TODO   Dit is een simple voorbeeld hier moet alles anders-->
+<!--    TODO   Dit is een simpel voorbeeld hier moet alles anders-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -15,7 +15,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Scherm 1"
+            android:text="scherm 1"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
