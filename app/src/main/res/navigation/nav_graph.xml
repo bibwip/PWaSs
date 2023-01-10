@@ -23,7 +23,11 @@
         android:id="@+id/addPostFragment"
         android:name="com.thethreewisemen.pwass.AddPostFragment"
         android:label="fragment_add_post"
-        tools:layout="@layout/fragment_add_post" />
+        tools:layout="@layout/fragment_add_post" >
+        <action
+            android:id="@+id/action_addPostFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.thethreewisemen.pwass.fragments.SettingsFragment"
@@ -32,5 +36,9 @@
         android:id="@+id/mainFragment"
         android:name="com.thethreewisemen.pwass.fragments.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_addPostFragment"
+            app:destination="@id/addPostFragment" />
+    </fragment>
 </navigation>
