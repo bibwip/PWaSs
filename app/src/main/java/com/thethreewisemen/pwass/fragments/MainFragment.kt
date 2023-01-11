@@ -42,8 +42,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         if (main.hasCustomTheme) {
             refresh.background.setTint(Color.parseColor(main.colorPrimary))
+            //button.background.setTint(Color.parseColor(main.colorPrimary))
 
-            //button.backgroundTintList = ColorStateList.valueOf(main.colorPrimary);
         }
 
 
