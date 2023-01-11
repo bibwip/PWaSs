@@ -2,11 +2,13 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/postCard"
+    android:clickable="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     app:cardBackgroundColor="#F8D496"
-    app:cardCornerRadius="7dp">
+    app:cardCornerRadius="7dp"
+    android:focusable="true">
 
 
     <RelativeLayout

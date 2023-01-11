@@ -10,6 +10,8 @@ import com.thethreewisemen.pwass.objects.CommentSection
 import com.thethreewisemen.pwass.objects.Post
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import java.util.*
+import kotlin.collections.ArrayList
 
 const val TAG = "FIRESTORE"
 const val postsCol = "Posts"
@@ -46,8 +48,7 @@ fun getComments(section : CommentSection, adapter: CommentsAdapter) = runBlockin
     launch {
         val db = Firebase.firestore
         section.comments.clear()
-        db.collection("CommentSection").document(section.id)
-            .collection("comments").get()
+        db.collection(comSecCol).document(section.id).collection("comments").get()
             .addOnSuccessListener {  snapshot ->
                 for (item in snapshot) {
                     val comment = item.toObject(Comment::class.java)
@@ -66,14 +67,14 @@ fun getComments(section : CommentSection, adapter: CommentsAdapter) = runBlockin
     }
 }
 
-private fun getChild(comment: Comment, section: CommentSection , index : ArrayList<Int>)  {
+private fun getChild(comment: Comment, section: CommentSection , index : MutableList<Int>)  {
     for ((count, com) in comment.child.withIndex()) {
         if  (comment.fireId == "") {
             com.parent = comment.parent
-        } else {
-            com.parent = comment.fireId
         }
-        com.childid = index.clone() as ArrayList<Int>
+        val clone = arrayListOf<Int>()
+        clone.addAll(index)
+        com.childid = clone
         com.childid.add(count)
         com.sectionId = section.id
         if (com.child.isNotEmpty()) {
@@ -111,7 +112,7 @@ fun uploadComment(comment: Comment, comSec : CommentSection, parent : Comment?) 
     }
 }
 
-private fun uploadChildComment(indexs: ArrayList<Int>, comment: Comment, parent: Comment, comSecId: String) {
+private fun uploadChildComment(indexs: MutableList<Int>, comment: Comment, parent: Comment, comSecId: String) {
     Log.d(TAG, indexs.toString())
     if (indexs.isNotEmpty()){
         val index = indexs[0]

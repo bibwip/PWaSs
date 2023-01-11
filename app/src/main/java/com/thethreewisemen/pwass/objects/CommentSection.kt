@@ -1,7 +1,7 @@
 package com.thethreewisemen.pwass.objects
 
 data class CommentSection(
-    val id : String = "",
+    var id : String = "",
     val comments : ArrayList<Comment> = arrayListOf(),
 
 )
