@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.thethreewisemen.pwass.R
 import com.thethreewisemen.pwass.objects.Comment
 
-class CommentsAdapter(val context: Context, private var comments: ArrayList<Comment>) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
+class CommentsAdapter(val context: Context, private var comments: MutableList<Comment>) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.comment, parent, false)
@@ -34,7 +34,7 @@ class CommentsAdapter(val context: Context, private var comments: ArrayList<Comm
         return comments.size
     }
 
-    fun getItems() : ArrayList<Comment>{
+    fun getItems() : MutableList<Comment>{
         return comments
     }
 

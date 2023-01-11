@@ -51,5 +51,14 @@
     <string name="colorSec">Secondary Color</string>
     <string name="colorBack">Background Color</string>
     <string name="colorPost">Post background Color</string>
+
+    <string name="username">username</string>
+    <string name="usernamepost">username</string>
+    <string name="seepost">post</string>
+    <string name="likeknop">liken</string>
+    <string name="Titlepost">Title</string>
+    <string name="Beschrijvingpost">description</string>
+    <string name="beschrijvingpost">beschrijving</string>
     <string name="apply">Apply theme changes</string>
+
 </resources>

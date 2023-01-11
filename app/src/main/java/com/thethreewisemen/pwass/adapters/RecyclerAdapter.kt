@@ -5,15 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.thethreewisemen.pwass.MainActivity
 import com.thethreewisemen.pwass.R
 import com.thethreewisemen.pwass.objects.Post
 
-class RecyclerAdapter (var posts: ArrayList<Post>, val main : MainActivity)
+
+class RecyclerAdapter (var posts: ArrayList<Post>, val main : MainActivity, val listener: OnItemClickListener)
     : RecyclerView.Adapter<RecyclerAdapter.PostViewHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.post_item, parent, false)
@@ -24,6 +25,7 @@ class RecyclerAdapter (var posts: ArrayList<Post>, val main : MainActivity)
         holder.title.text = posts[position].titel
         holder.name.text = posts[position].naam_poster
         holder.beschrijving.text = posts[position].beschrijving
+        holder.card.setOnClickListener { listener.onItemClick(posts[position], position) }
     }
 
     override fun getItemCount(): Int {
@@ -35,13 +37,20 @@ class RecyclerAdapter (var posts: ArrayList<Post>, val main : MainActivity)
         notifyDataSetChanged()
     }
 
-    inner class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    // parent activity will implement this method to respond to click events
+    interface OnItemClickListener {
+        fun onItemClick(item: Post?, position: Int)
+    }
+
+    inner class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val title : TextView = itemView.findViewById(R.id.postItemTitle)
         val name : TextView = itemView.findViewById(R.id.postItemUserName)
         val beschrijving : TextView = itemView.findViewById(R.id.postItemBeschrijving)
+        val card : CardView = itemView.findViewById(R.id.postCard)
+
         init {
             if (main.hasCustomTheme) itemView.findViewById<CardView>(R.id.postCard)
-                    .setCardBackgroundColor(Color.parseColor(main.colorPost))
+                .setCardBackgroundColor(Color.parseColor(main.colorPost))
         }
 
     }

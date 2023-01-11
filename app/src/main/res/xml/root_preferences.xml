@@ -1,5 +1,4 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <PreferenceCategory app:title="@string/appTheme">
         <SwitchPreference
             app:key="customTheme"
@@ -27,10 +26,12 @@
                 app:title="@string/colorPost"
                 app:layout="@layout/color_preference"
                 />
-            <com.thethreewisemen.pwass.objects.ButtonPreference
-                app:key="applyTheme"
-                app:layout="@layout/button_preference"/>
+
         </PreferenceCategory>
+
+        <com.thethreewisemen.pwass.objects.ButtonPreference
+            app:key="applyTheme"
+            app:layout="@layout/button_preference"/>
 
     </PreferenceCategory>
 

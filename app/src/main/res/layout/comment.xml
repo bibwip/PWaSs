@@ -20,24 +20,21 @@
             android:id="@+id/comUsernameTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="285dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="username"
             android:textSize="13sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/comPFImg"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/comPFImg"
-            android:layout_width="49dp"
-            android:layout_height="56dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+<!--        <ImageView-->
+<!--            android:id="@+id/comPFImg"-->
+<!--            android:layout_width="49dp"-->
+<!--            android:layout_height="56dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            tools:srcCompat="@tools:sample/avatars" />-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/comRecComments"
@@ -46,7 +43,6 @@
             android:layout_marginTop="28dp"
             android:paddingLeft="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/comContentTv" />
 
@@ -56,28 +52,33 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="258dp"
             android:text="@string/Commentplek"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/comPFImg"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/comUsernameTv" />
+
 
         <ImageButton
             android:id="@+id/comReplyBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="251dp"
-            android:layout_marginBottom="174dp"
-            android:scaleX="0.3"
-            android:scaleY="0.3"
-            android:src="@drawable/ic_launcher_foreground"
-            app:layout_constraintBottom_toBottomOf="@+id/comRecComments"
-            app:layout_constraintStart_toEndOf="@+id/comPFImg"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
+            android:layout_marginBottom="16dp"
+
+            android:background="#B69C68"
+            android:src="@drawable/ic_reply"
+            app:layout_constraintBottom_toTopOf="@+id/comRecComments"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#B69C68"
+            android:contentDescription="@string/likeknop"
+            android:src="@drawable/ic_like"
+            app:layout_constraintEnd_toStartOf="@+id/comReplyBtn"
+            app:layout_constraintTop_toTopOf="@+id/comReplyBtn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
