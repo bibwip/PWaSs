@@ -22,9 +22,6 @@
         <action
             android:id="@+id/action_volgendeFrag_to_mainFragment"
             app:destination="@id/mainFragment" />
-        <action
-            android:id="@+id/action_volgendeFrag_to_tutorialFragment"
-            app:destination="@id/tutorialFragment" />
     </fragment>
     <fragment
         android:id="@+id/addPostFragment"
@@ -70,11 +67,6 @@ tools:layout="@layout/fragment_post">
         android:name="commentSectionId"
         app:argType="string" />
 </fragment>
-<fragment
-android:id="@+id/tutorialFragment"
-android:name="com.thethreewisemen.pwass.tutorialFragment"
-android:label="fragment_tutorial"
-tools:layout="@layout/fragment_tutorial" />
 
 
 </navigation>

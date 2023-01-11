@@ -29,7 +29,7 @@
 
 
     <string name="welkomTekst">  Welkom in onze app!  </string>
-    <string name="TutorialTekst"> Wil je een tutorial zien van hoe je de app moet gebruiken?</string>
+    <string name="naamTekst"> Vul hier je naam in (dit hoeft niet je echte naam te zijn en hij kan aangepast worden)</string>
     <string name="user"> Gebruikersnaam</string>
     <string name="add"> Toevoegen</string>
 
