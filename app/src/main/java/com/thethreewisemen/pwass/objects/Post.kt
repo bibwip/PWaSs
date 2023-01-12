@@ -7,6 +7,7 @@ import com.google.firebase.ktx.Firebase
 import com.thethreewisemen.pwass.firestore.comSecCol
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
+import java.util.Date
 
 data class Post(
     var id: String = "",
@@ -15,7 +16,8 @@ data class Post(
     val naam_poster: String = "",
     val commentSection: CommentSection = CommentSection(),
     var like: Int = 0,
-    val img: Bitmap? = null
+    val img: Bitmap? = null,
+    val datum: Date? = null
 ) {
     constructor(titel : String, beschrijving: String, poster: String, img: Bitmap?) :
             this("", titel, beschrijving, poster, CommentSection(), 0, img)

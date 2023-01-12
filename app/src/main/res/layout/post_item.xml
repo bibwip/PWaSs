@@ -33,8 +33,8 @@
             android:id="@+id/postItemUserName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="276dp"
-            android:layout_toEndOf="@+id/postItemTitle"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp"
             android:text="Anoniem"
             android:textSize="15sp" />
 
@@ -46,6 +46,15 @@
             android:layout_marginTop="0dp"
             android:text="@string/Beschrijvingpost"
             android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/datumPost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="160dp"
+            android:layout_marginEnd="0dp"
+            android:layout_toStartOf="@+id/postItemUserName"
+            android:layout_toEndOf="@+id/postItemTitle" />
 
 
     </RelativeLayout>

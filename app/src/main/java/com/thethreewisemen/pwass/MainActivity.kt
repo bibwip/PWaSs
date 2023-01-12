@@ -11,6 +11,9 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
+import android.widget.TextView
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -21,13 +24,14 @@ class MainActivity : AppCompatActivity() {
     var colorBack = ""
     var colorPost = ""
 
-    private lateinit var navController : NavController
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_graph_container) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_graph_container) as NavHostFragment
         navController = navHostFragment.findNavController()
 
         val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
@@ -36,10 +40,12 @@ class MainActivity : AppCompatActivity() {
         setColors(prefs)
         //checkFirstRun(prefs)
 
-        if (hasCustomTheme){
+        if (hasCustomTheme) {
             supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(colorPrimary)))
             window.statusBarColor = Color.parseColor(colorPrimaryVariant)
         }
+
+
 
 
     }
@@ -50,10 +56,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-            return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
+        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
     }
 
-    private fun setColors(prefs: SharedPreferences){
+    private fun setColors(prefs: SharedPreferences) {
 
         colorPrimary = prefs.getString(COLORPRIMARY, "#eb40ff34")!!
         colorPrimaryVariant = prefs.getString(COLORPRIMARYVAR, "#eb403ff4")!!
@@ -92,5 +98,9 @@ class MainActivity : AppCompatActivity() {
         const val COLORPOST = "colorPost"
 
     }
-
 }
+
+
+
+
+

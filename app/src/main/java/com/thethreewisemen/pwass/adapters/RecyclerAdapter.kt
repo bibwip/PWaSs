@@ -25,6 +25,7 @@ class RecyclerAdapter (var posts: ArrayList<Post>, val main : MainActivity, val 
         holder.title.text = posts[position].titel
         holder.name.text = posts[position].naam_poster
         holder.beschrijving.text = posts[position].beschrijving
+        holder.datum.text = posts[position].datum.toString()
         holder.card.setOnClickListener { listener.onItemClick(posts[position], position) }
     }
 
@@ -47,6 +48,7 @@ class RecyclerAdapter (var posts: ArrayList<Post>, val main : MainActivity, val 
         val name : TextView = itemView.findViewById(R.id.postItemUserName)
         val beschrijving : TextView = itemView.findViewById(R.id.postItemBeschrijving)
         val card : CardView = itemView.findViewById(R.id.postCard)
+        val datum : TextView = itemView.findViewById(R.id.datumPost)
 
         init {
             if (main.hasCustomTheme) itemView.findViewById<CardView>(R.id.postCard)

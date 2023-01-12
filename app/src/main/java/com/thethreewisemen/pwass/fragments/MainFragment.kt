@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -18,6 +19,9 @@ import com.thethreewisemen.pwass.R
 import com.thethreewisemen.pwass.adapters.RecyclerAdapter
 import com.thethreewisemen.pwass.firestore.getPosts
 import com.thethreewisemen.pwass.objects.Post
+import kotlinx.android.synthetic.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class MainFragment : Fragment(R.layout.fragment_main) {
@@ -63,8 +67,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             //button.background.setTint(Color.parseColor(main.colorPrimary))
 
         }
-
-
 
 
 
