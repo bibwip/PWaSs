@@ -1,11 +1,13 @@
 package com.thethreewisemen.pwass.fragments
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.CheckBoxPreference
+import androidx.preference.EditTextPreference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
@@ -16,6 +18,7 @@ import com.thethreewisemen.pwass.MainActivity.Companion.COLORBACK
 import com.thethreewisemen.pwass.MainActivity.Companion.COLORPOST
 import com.thethreewisemen.pwass.MainActivity.Companion.COLORPRIMARY
 import com.thethreewisemen.pwass.MainActivity.Companion.COLORPRIMARYVAR
+import com.thethreewisemen.pwass.MainActivity.Companion.USERNAME
 import com.thethreewisemen.pwass.R
 import com.thethreewisemen.pwass.objects.ButtonPreference
 import com.thethreewisemen.pwass.objects.ColorPreference
@@ -23,10 +26,13 @@ import com.thethreewisemen.pwass.objects.ColorPreference
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
+    lateinit var prefs : SharedPreferences
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
-        val prefs = requireActivity().getSharedPreferences(MainActivity.PREFS_NAME, AppCompatActivity.MODE_PRIVATE)
+        prefs = requireActivity().getSharedPreferences(MainActivity.PREFS_NAME, AppCompatActivity.MODE_PRIVATE)
+
         val main = activity as MainActivity
 
         val prefCustomTheme = findPreference<SwitchPreference>("customTheme")
@@ -35,6 +41,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
         val prefColSec = findPreference<ColorPreference>("colorSec")
         val prefColBack = findPreference<ColorPreference>("colorBack")
         val prefColPost = findPreference<ColorPreference>("colorPost")
+        val prefUsername = findPreference<EditTextPreference>("userName")
+
+        prefUsername!!.text = prefs.getString(USERNAME, "")
+
 
         findPreference<PreferenceCategory>("colorCat")!!.isVisible = prefCustomTheme!!.isChecked
 
@@ -135,5 +145,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
             true
         }
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        val prefUsername = findPreference<EditTextPreference>("userName")
+        prefs.edit().putString(USERNAME, prefUsername!!.text.toString()).apply()
     }
 }

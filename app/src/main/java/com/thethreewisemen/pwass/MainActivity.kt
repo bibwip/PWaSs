@@ -85,6 +85,7 @@ class MainActivity : AppCompatActivity() {
         const val DOESNT_EXIST = -1
         const val PREFS_NAME = "MyPrefsFile"
 
+        const val USERNAME = "userName"
         const val HASCUSTOMTHEME = "isCustomTheme"
         const val COLORPRIMARY = "colorPrimary"
         const val COLORPRIMARYVAR = "colorPrimaryVar"
