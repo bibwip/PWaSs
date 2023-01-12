@@ -27,14 +27,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-<!--        <ImageView-->
-<!--            android:id="@+id/comPFImg"-->
-<!--            android:layout_width="49dp"-->
-<!--            android:layout_height="56dp"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            tools:srcCompat="@tools:sample/avatars" />-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/comPFImg"-->
+        <!--            android:layout_width="49dp"-->
+        <!--            android:layout_height="56dp"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            tools:srcCompat="@tools:sample/avatars" />-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/comRecComments"
@@ -60,25 +60,30 @@
 
         <ImageButton
             android:id="@+id/comReplyBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="32dp"
+            android:layout_height="31dp"
             android:layout_marginBottom="16dp"
-
             android:background="#B69C68"
             android:src="@drawable/ic_reply"
             app:layout_constraintBottom_toTopOf="@+id/comRecComments"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="SpeakableTextPresentCheck" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.972"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/comlikeBtn"
+            android:layout_width="32dp"
+            android:layout_height="31dp"
+            android:layout_marginBottom="17dp"
             android:background="#B69C68"
             android:contentDescription="@string/likeknop"
             android:src="@drawable/ic_like"
+            app:layout_constraintBottom_toTopOf="@+id/comRecComments"
             app:layout_constraintEnd_toStartOf="@+id/comReplyBtn"
-            app:layout_constraintTop_toTopOf="@+id/comReplyBtn" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            tools:ignore="TouchTargetSizeCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
