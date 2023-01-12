@@ -1,13 +1,10 @@
 package com.thethreewisemen.pwass.objects
 
 import android.graphics.Bitmap
-import android.os.Parcelable
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import com.thethreewisemen.pwass.firestore.comSecCol
-import kotlinx.android.parcel.Parcelize
-import kotlinx.android.parcel.RawValue
-import java.util.Date
+import com.google.firebase.Timestamp
+import java.util.*
+import kotlin.math.min
+
 
 data class Post(
     var id: String = "",
@@ -17,7 +14,7 @@ data class Post(
     val commentSection: CommentSection = CommentSection(),
     var like: Int = 0,
     val img: Bitmap? = null,
-    val datum: Date? = null
+    val datum: Long = System.currentTimeMillis()
 ) {
     constructor(titel : String, beschrijving: String, poster: String, img: Bitmap?) :
             this("", titel, beschrijving, poster, CommentSection(), 0, img)
@@ -29,5 +26,21 @@ data class Post(
                 "beschrijving $beschrijving\n" +
                 "naam poster: $naam_poster\n" +
                 "likes: $like"
+    }
+
+    fun getDate() : String {
+        val seconden = (System.currentTimeMillis() - datum)/1000
+        val minuten = seconden/60
+        val uren = minuten/60
+        val dagen = uren/24
+
+        if (dagen >= 1) {
+            return "${dagen.toInt()}d"
+        } else if (uren >= 1) {
+            return "${uren.toInt()}h"
+        } else if (minuten >= 1){
+            return "${minuten.toInt()}m"
+        }
+        return "${seconden.toInt()}s"
     }
 }

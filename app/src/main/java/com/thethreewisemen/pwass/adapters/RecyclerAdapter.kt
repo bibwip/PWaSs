@@ -25,7 +25,7 @@ class RecyclerAdapter (var posts: ArrayList<Post>, val main : MainActivity, val 
         holder.title.text = posts[position].titel
         holder.name.text = posts[position].naam_poster
         holder.beschrijving.text = posts[position].beschrijving
-        holder.datum.text = posts[position].datum.toString()
+        holder.datum.text = posts[position].getDate()
         holder.card.setOnClickListener { listener.onItemClick(posts[position], position) }
     }
 

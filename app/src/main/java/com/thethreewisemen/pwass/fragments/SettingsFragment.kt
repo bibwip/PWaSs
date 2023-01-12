@@ -13,6 +13,7 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.flask.colorpicker.ColorPickerView
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder
+import com.google.type.DateTime
 import com.thethreewisemen.pwass.MainActivity
 import com.thethreewisemen.pwass.MainActivity.Companion.COLORBACK
 import com.thethreewisemen.pwass.MainActivity.Companion.COLORPOST
@@ -32,7 +33,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
         prefs = requireActivity().getSharedPreferences(MainActivity.PREFS_NAME, AppCompatActivity.MODE_PRIVATE)
-
+        DateTime.getDefaultInstance()
         val main = activity as MainActivity
 
         val prefCustomTheme = findPreference<SwitchPreference>("customTheme")

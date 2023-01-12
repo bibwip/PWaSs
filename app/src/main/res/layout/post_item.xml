@@ -51,10 +51,8 @@
             android:id="@+id/datumPost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="160dp"
-            android:layout_marginEnd="0dp"
-            android:layout_toStartOf="@+id/postItemUserName"
-            android:layout_toEndOf="@+id/postItemTitle" />
+            android:layout_marginEnd="16dp"
+            android:layout_toStartOf="@+id/postItemUserName" />
 
 
     </RelativeLayout>

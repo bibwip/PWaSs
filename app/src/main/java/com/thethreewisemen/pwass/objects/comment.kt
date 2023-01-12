@@ -4,21 +4,21 @@ import android.graphics.Bitmap
 
 
 data class Comment(
-    var parent: Any? = null,
+    var parent: String? = null,
     var fireId: String = "",
     var sectionId: String = "",
-    var childid: MutableList<Int> = mutableListOf(),
-    val child : MutableList<Comment> = mutableListOf(),
+    var childid: ArrayList<Int> = arrayListOf(),
+    val child : ArrayList<Comment> = arrayListOf(),
     var text : String = "",
     var userName: String = "",
     var likes: Int = 0
     ) {
 
     constructor(text : String, username: String, secId: String) :
-            this(null, "", secId, mutableListOf(), mutableListOf(), text, username, 0)
+            this(null, "", secId, arrayListOf(), arrayListOf(), text, username, 0)
 
     override fun toString(): String {
-        return "comment:\n" +
+        return "\n" +
                 "parent:    $parent\n" +
                 "fireid:    $fireId\n" +
                 "sectionId: $sectionId\n" +

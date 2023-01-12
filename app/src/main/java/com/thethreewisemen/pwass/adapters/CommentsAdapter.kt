@@ -5,13 +5,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.thethreewisemen.pwass.R
+import com.thethreewisemen.pwass.firestore.postsCol
 import com.thethreewisemen.pwass.objects.Comment
+import com.thethreewisemen.pwass.objects.Post
 
-class CommentsAdapter(val context: Context, private var comments: MutableList<Comment>) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
+class CommentsAdapter(val context: Context, private var comments: MutableList<Comment>, val listener: OnItemClickListener)
+    : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.comment, parent, false)
@@ -23,6 +27,7 @@ class CommentsAdapter(val context: Context, private var comments: MutableList<Co
             val comment = comments[position]
             holder.userName.text = comment.userName
             holder.text.text = comment.text
+            holder.reply.setOnClickListener { listener.onItemClick(comment, position)}
             if (comment.child.isNotEmpty()){
                 holder.child.layoutManager = LinearLayoutManager(context)
                 holder.child.adapter = InnerAdapter(comment.child)
@@ -38,6 +43,10 @@ class CommentsAdapter(val context: Context, private var comments: MutableList<Co
         return comments
     }
 
+    interface OnItemClickListener {
+        fun onItemClick(item: Comment?, position: Int)
+    }
+
     fun updateItems(newCom :ArrayList<Comment>) {
         comments = newCom
         notifyDataSetChanged()
@@ -48,6 +57,7 @@ class CommentsAdapter(val context: Context, private var comments: MutableList<Co
         val text : TextView = itemView.findViewById(R.id.comContentTv)
         val userName : TextView= itemView.findViewById(R.id.comUsernameTv)
         val child: RecyclerView = itemView.findViewById(R.id.comRecComments)
+        val reply: ImageButton = itemView.findViewById(R.id.comReplyBtn)
 
     }
 
@@ -62,11 +72,11 @@ class CommentsAdapter(val context: Context, private var comments: MutableList<Co
             if (childCom.isNotEmpty()){
                 val comment = childCom[position]
                 holder.userName.text = comment.userName
-
+                holder.reply.setOnClickListener { listener.onItemClick(comment, position)}
                 holder.text.text = comment.text
                 if (comment.child.isNotEmpty()){
                     holder.child.layoutManager = LinearLayoutManager(context)
-                    holder.child.adapter = CommentsAdapter(context, comment.child)
+                    holder.child.adapter = CommentsAdapter(context, comment.child, listener)
                 }
             }
         }

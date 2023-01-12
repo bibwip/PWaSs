@@ -10,13 +10,16 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.preference.EditTextPreference
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.type.Date
 import com.thethreewisemen.pwass.MainActivity
 import com.thethreewisemen.pwass.R
 import com.thethreewisemen.pwass.firestore.comSecCol
 import com.thethreewisemen.pwass.firestore.uploadPost
 import com.thethreewisemen.pwass.objects.Post
+import java.time.LocalDate
 
 class AddPostFragment : Fragment(R.layout.fragment_add_post) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,7 +34,8 @@ class AddPostFragment : Fragment(R.layout.fragment_add_post) {
         userName.setText(prefs.getString(MainActivity.USERNAME, ""))
 
         uploadBtn.setOnClickListener {
-            val post = Post(titel.text.toString(), beschrijving.text.toString(), userName.text.toString(), null)
+            val post = Post(titel.text.toString(), beschrijving.text.toString(), userName.text.toString(),
+                null)
             val db = Firebase.firestore
             db.collection(comSecCol).add(post.commentSection).addOnSuccessListener {
                 post.commentSection.id = it.id

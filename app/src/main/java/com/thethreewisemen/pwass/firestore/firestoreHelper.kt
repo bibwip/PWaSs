@@ -1,6 +1,7 @@
 package com.thethreewisemen.pwass.firestore
 
 import android.util.Log
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.thethreewisemen.pwass.adapters.CommentsAdapter
@@ -10,7 +11,6 @@ import com.thethreewisemen.pwass.objects.CommentSection
 import com.thethreewisemen.pwass.objects.Post
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import java.util.*
 import kotlin.collections.ArrayList
 
 const val TAG = "FIRESTORE"
@@ -34,7 +34,7 @@ fun uploadPost(post: Post)  {
 fun getPosts(adapter : RecyclerAdapter){
     val posts = arrayListOf<Post>()
     val query = Firebase.firestore.collection(postsCol)
-    query.get().addOnSuccessListener { snapshot ->
+    query.orderBy("datum", Query.Direction.DESCENDING).get().addOnSuccessListener { snapshot ->
         for (doc in snapshot) {
             posts.add(doc.toObject(Post::class.java))
         }
@@ -67,14 +67,14 @@ fun getComments(section : CommentSection, adapter: CommentsAdapter) = runBlockin
     }
 }
 
-private fun getChild(comment: Comment, section: CommentSection , index : MutableList<Int>)  {
+private fun getChild(comment: Comment, section: CommentSection , index : ArrayList<Int>)  {
     for ((count, com) in comment.child.withIndex()) {
         if  (comment.fireId == "") {
             com.parent = comment.parent
+        } else {
+            com.parent = comment.fireId
         }
-        val clone = arrayListOf<Int>()
-        clone.addAll(index)
-        com.childid = clone
+        com.childid = index.clone() as ArrayList<Int>
         com.childid.add(count)
         com.sectionId = section.id
         if (com.child.isNotEmpty()) {
@@ -88,7 +88,7 @@ fun uploadComment(comment: Comment, comSec : CommentSection, parent : Comment?) 
     if (parent != null){
         if (parent.parent != null) {
             for (com in comSec.comments) {
-                Log.d(TAG, com.fireId + " == " + parent.parent)
+                Log.d(TAG, com.fireId + " === " + parent.parent)
                 if (com.fireId == parent.parent) {
                     uploadChildComment(parent.childid, comment, com, comSec.id )
                     db.collection(comSecCol).document(comSec.id).collection("comments").document(com.fireId).set(com)
@@ -112,7 +112,7 @@ fun uploadComment(comment: Comment, comSec : CommentSection, parent : Comment?) 
     }
 }
 
-private fun uploadChildComment(indexs: MutableList<Int>, comment: Comment, parent: Comment, comSecId: String) {
+private fun uploadChildComment(indexs: ArrayList<Int>, comment: Comment, parent: Comment, comSecId: String) {
     Log.d(TAG, indexs.toString())
     if (indexs.isNotEmpty()){
         val index = indexs[0]
