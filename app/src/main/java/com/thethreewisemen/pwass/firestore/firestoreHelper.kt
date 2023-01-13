@@ -1,6 +1,7 @@
 package com.thethreewisemen.pwass.firestore
 
 import android.util.Log
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -16,6 +17,21 @@ import kotlin.collections.ArrayList
 const val TAG = "FIRESTORE"
 const val postsCol = "Posts"
 const val comSecCol = "CommentSection"
+
+
+fun refreshPosts(adapter : RecyclerAdapter, refresher : SwipeRefreshLayout){
+    val posts = arrayListOf<Post>()
+    val query = Firebase.firestore.collection(postsCol)
+    query.orderBy("datum", Query.Direction.DESCENDING).get().addOnSuccessListener { snapshot ->
+        for (doc in snapshot) {
+            posts.add(doc.toObject(Post::class.java))
+        }
+        adapter.updateItems(posts)
+        refresher.isRefreshing = false
+    }.addOnFailureListener {
+        Log.d(TAG, "failed getting all posts")
+    }
+}
 
 fun uploadPost(post: Post)  {
     val db = Firebase.firestore

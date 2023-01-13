@@ -13,11 +13,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.thethreewisemen.pwass.MainActivity
 import com.thethreewisemen.pwass.R
 import com.thethreewisemen.pwass.adapters.RecyclerAdapter
 import com.thethreewisemen.pwass.firestore.getPosts
+import com.thethreewisemen.pwass.firestore.refreshPosts
 import com.thethreewisemen.pwass.objects.Post
 import kotlinx.android.synthetic.*
 import java.text.SimpleDateFormat
@@ -31,6 +33,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         val main = (activity as MainActivity)
         val button = view.findViewById<FloatingActionButton>(R.id.mainAddPostBtn)
         val refresh = view.findViewById<Button>(R.id.mainRefreshBtn)
+        val refresher = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefreshPost)
+
+
+
 
         val adapter = RecyclerAdapter(arrayListOf(), (activity as MainActivity),
             object : RecyclerAdapter.OnItemClickListener {
@@ -53,6 +59,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         recycler.adapter = adapter
         getPosts(adapter)
 
+        refresher.setOnRefreshListener {
+            refreshPosts(adapter, refresher)
+            refresher.isRefreshing = true
+        }
+
         button.setOnClickListener {
             val action = MainFragmentDirections.actionMainFragmentToAddPostFragment()
             view.findNavController().navigate(action)
@@ -66,7 +77,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             refresh.background.setTint(Color.parseColor(main.colorPrimary))
             //button.background.setTint(Color.parseColor(main.colorPrimary))
 
+
         }
+
+
 
 
 
