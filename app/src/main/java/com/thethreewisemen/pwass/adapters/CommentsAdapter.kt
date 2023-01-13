@@ -1,7 +1,6 @@
 package com.thethreewisemen.pwass.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.thethreewisemen.pwass.R
-import com.thethreewisemen.pwass.firestore.postsCol
-import com.thethreewisemen.pwass.firestore.uploadComment
 import com.thethreewisemen.pwass.objects.Comment
-import com.thethreewisemen.pwass.objects.Post
 
 class CommentsAdapter(val context: Context, private var comments: MutableList<Comment>, val listener: OnItemClickListener)
     : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
@@ -28,15 +24,20 @@ class CommentsAdapter(val context: Context, private var comments: MutableList<Co
             val comment = comments[position]
             holder.userName.text = comment.userName
             holder.text.text = comment.text
-            holder.reply.setOnClickListener { listener.onItemClick(comment, position, 0)}
+            holder.reply.setOnClickListener { listener.onItemClick(comment, position, 0, null)}
             holder.like.setOnClickListener {
                 if (!holder.liked) {
-                    listener.onItemClick(comment, position, 1)
+                    listener.onItemClick(comment, position, 1, null)
+                    holder.liked = true
+                    holder.like.setImageResource(R.drawable.ic_like_true)
+                } else {
+                    holder.liked = false
+                    holder.like.setImageResource(R.drawable.ic_like_false)
                 }
             }
             if (comment.child.isNotEmpty()){
                 holder.child.layoutManager = LinearLayoutManager(context)
-                holder.child.adapter = InnerAdapter(comment.child)
+                holder.child.adapter = InnerAdapter(comment.child, comment)
             }
         }
     }
@@ -50,7 +51,7 @@ class CommentsAdapter(val context: Context, private var comments: MutableList<Co
     }
 
     interface OnItemClickListener {
-        fun onItemClick(item: Comment?, position: Int, type : Int)
+        fun onItemClick(item: Comment?, position: Int, type : Int, parent: Comment?)
     }
 
     fun updateItems(newCom :ArrayList<Comment>) {
@@ -65,11 +66,15 @@ class CommentsAdapter(val context: Context, private var comments: MutableList<Co
         val child: RecyclerView = itemView.findViewById(R.id.comRecComments)
         val reply: ImageButton = itemView.findViewById(R.id.comReplyBtn)
         val like: ImageButton = itemView.findViewById(R.id.comlikeBtn)
-        val liked = false
+        var liked = false
 
     }
 
-    private inner class InnerAdapter(private val childCom: List<Comment>) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
+    private inner class InnerAdapter(private var childCom: List<Comment>, val parent: Comment) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
+
+        init {
+            childCom = childCom.sortedBy { com : Comment -> com.likes }.asReversed()
+        }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.comment, parent, false)
@@ -80,11 +85,21 @@ class CommentsAdapter(val context: Context, private var comments: MutableList<Co
             if (childCom.isNotEmpty()){
                 val comment = childCom[position]
                 holder.userName.text = comment.userName
-                holder.reply.setOnClickListener { listener.onItemClick(comment, position, 0)}
+                holder.reply.setOnClickListener { listener.onItemClick(comment, position, 0, null)}
                 holder.text.text = comment.text
+                holder.like.setOnClickListener {
+                    if (!holder.liked) {
+                        listener.onItemClick(comment, position, 1, parent)
+                        holder.liked = true
+                        holder.like.setImageResource(R.drawable.ic_like_true)
+                    } else {
+                        holder.liked = false
+                        holder.like.setImageResource(R.drawable.ic_like_false)
+                    }
+                }
                 if (comment.child.isNotEmpty()){
                     holder.child.layoutManager = LinearLayoutManager(context)
-                    holder.child.adapter = CommentsAdapter(context, comment.child, listener)
+                    holder.child.adapter = InnerAdapter(comment.child, comment)
                 }
             }
         }

@@ -1,4 +1,4 @@
-package com.thethreewisemen.pwass.firestore
+package com.thethreewisemen.pwass.helpers
 
 import android.util.Log
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -87,8 +87,8 @@ fun getComments(section : CommentSection, adapter: CommentsAdapter) = runBlockin
     launch {
         val db = Firebase.firestore
         section.comments.clear()
-        db.collection(comSecCol).document(section.id).collection("comments").get()
-            .addOnSuccessListener {  snapshot ->
+        db.collection(comSecCol).document(section.id).collection("comments")
+            .orderBy("likes", Query.Direction.DESCENDING).get().addOnSuccessListener {  snapshot ->
                 for (item in snapshot) {
                     val comment = item.toObject(Comment::class.java)
                     comment.sectionId = section.id
@@ -119,6 +119,33 @@ private fun getChild(comment: Comment, section: CommentSection , index : ArrayLi
         if (com.child.isNotEmpty()) {
             getChild(com, section, com.childid)
         }
+    }
+}
+
+fun likeComment(comment: Comment, comSecId: String){
+    val db = Firebase.firestore
+    if (comment.parent == null){
+        comment.likes++
+        db.collection(comSecCol).document(comSecId).collection("comments")
+            .document(comment.fireId).set(comment)
+    } else {
+        db.collection(comSecCol).document(comSecId).collection("comments")
+            .document(comment.parent!!).get().addOnSuccessListener {
+                val com = it.toObject(Comment::class.java)
+                likeChild(comment, com!!, comment.childid)
+                db.collection(comSecCol).document(comSecId).collection("comments").document(it.id).set(com)
+            }
+    }
+
+}
+
+private fun likeChild(child: Comment, parent: Comment, indexs: ArrayList<Int>){
+    if (indexs.isNotEmpty()){
+        val index = indexs[0]
+        indexs.removeAt(0)
+        likeChild(child, parent.child[index], indexs)
+    } else {
+        parent.likes++
     }
 }
 

@@ -1,13 +1,10 @@
 package com.thethreewisemen.pwass.fragments
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.Gravity
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -18,12 +15,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.thethreewisemen.pwass.MainActivity
 import com.thethreewisemen.pwass.R
 import com.thethreewisemen.pwass.adapters.CommentsAdapter
-import com.thethreewisemen.pwass.adapters.RecyclerAdapter
-import com.thethreewisemen.pwass.firestore.getComments
-import com.thethreewisemen.pwass.firestore.uploadComment
+import com.thethreewisemen.pwass.helpers.getComments
+import com.thethreewisemen.pwass.helpers.hideKeyboard
+import com.thethreewisemen.pwass.helpers.likeComment
+import com.thethreewisemen.pwass.helpers.uploadComment
 import com.thethreewisemen.pwass.objects.Comment
 import com.thethreewisemen.pwass.objects.CommentSection
-import com.thethreewisemen.pwass.objects.Post
 
 
 class PostFragment : Fragment(R.layout.fragment_post) {
@@ -50,9 +47,10 @@ class PostFragment : Fragment(R.layout.fragment_post) {
         userName.text = args.postUsername
         bes.text = args.postBes
 
+
         val adapter = CommentsAdapter(requireContext(), arrayListOf(),
             object : CommentsAdapter.OnItemClickListener {
-                override fun onItemClick(item: Comment?, position: Int, type: Int) {
+                override fun onItemClick(item: Comment?, position: Int, type: Int, parent : Comment?) {
                     if (type == 0) {
                         val alert = AlertDialog.Builder(requireContext())
                         alert.setTitle("Comment")
@@ -70,7 +68,7 @@ class PostFragment : Fragment(R.layout.fragment_post) {
                         }
                         alert.show()
                     } else {
-
+                        likeComment(item!!, item.sectionId)
                     }
                 }
             })
@@ -81,6 +79,8 @@ class PostFragment : Fragment(R.layout.fragment_post) {
         comBtn.setOnClickListener {
             val com = Comment(comTxt.text.toString(), "bobbie", commentSection.id)
             uploadComment(com, commentSection, null)
+            comTxt.text.clear()
+            hideKeyboard()
         }
     }
 }

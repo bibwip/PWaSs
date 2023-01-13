@@ -1,13 +1,8 @@
 package com.thethreewisemen.pwass.fragments
 
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -18,12 +13,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.thethreewisemen.pwass.MainActivity
 import com.thethreewisemen.pwass.R
 import com.thethreewisemen.pwass.adapters.RecyclerAdapter
-import com.thethreewisemen.pwass.firestore.getPosts
-import com.thethreewisemen.pwass.firestore.refreshPosts
+import com.thethreewisemen.pwass.helpers.getPosts
+import com.thethreewisemen.pwass.helpers.refreshPosts
 import com.thethreewisemen.pwass.objects.Post
-import kotlinx.android.synthetic.*
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 class MainFragment : Fragment(R.layout.fragment_main) {
@@ -32,13 +24,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         val main = (activity as MainActivity)
         val button = view.findViewById<FloatingActionButton>(R.id.mainAddPostBtn)
-        val refresh = view.findViewById<Button>(R.id.mainRefreshBtn)
         val refresher = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefreshPost)
 
 
 
 
-        val adapter = RecyclerAdapter(arrayListOf(), (activity as MainActivity),
+        val adapter = RecyclerAdapter(arrayListOf(), main,
             object : RecyclerAdapter.OnItemClickListener {
                 override fun onItemClick(item: Post?, position: Int) {
                     if (item != null) {
@@ -50,8 +41,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                         )
                         findNavController().navigate(action)
                     }
-
-
                 }
             })
         val recycler = view.findViewById<RecyclerView>(R.id.recyclerPosts)
@@ -68,17 +57,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             val action = MainFragmentDirections.actionMainFragmentToAddPostFragment()
             view.findNavController().navigate(action)
         }
-        refresh.setOnClickListener {
-            getPosts(adapter)
-        }
 
-
-        if (main.hasCustomTheme) {
-            refresh.background.setTint(Color.parseColor(main.colorPrimary))
-            //button.background.setTint(Color.parseColor(main.colorPrimary))
-
-
-        }
 
 
 

@@ -9,17 +9,13 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.preference.EditTextPreference
-import com.google.firebase.Timestamp
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.type.Date
 import com.thethreewisemen.pwass.MainActivity
 import com.thethreewisemen.pwass.R
-import com.thethreewisemen.pwass.firestore.comSecCol
-import com.thethreewisemen.pwass.firestore.uploadPost
+import com.thethreewisemen.pwass.helpers.comSecCol
+import com.thethreewisemen.pwass.helpers.uploadPost
 import com.thethreewisemen.pwass.objects.Post
-import java.time.LocalDate
 
 class AddPostFragment : Fragment(R.layout.fragment_add_post) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
