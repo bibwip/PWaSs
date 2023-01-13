@@ -52,22 +52,26 @@ class PostFragment : Fragment(R.layout.fragment_post) {
 
         val adapter = CommentsAdapter(requireContext(), arrayListOf(),
             object : CommentsAdapter.OnItemClickListener {
-                override fun onItemClick(item: Comment?, position: Int) {
-                    val alert = AlertDialog.Builder(requireContext())
-                    alert.setTitle("Comment")
-                    val input = EditText(requireContext())
-                    input.hint = "Enter you comment"
-                    input.gravity = Gravity.START
-                    alert.setView(input)
-                    alert.setPositiveButton(android.R.string.ok) { dialogInterface, _ ->
-                        val com = Comment(input.text.toString(), currentUser, commentSection.id)
-                        uploadComment(com, commentSection, item)
-                        dialogInterface.cancel()
+                override fun onItemClick(item: Comment?, position: Int, type: Int) {
+                    if (type == 0) {
+                        val alert = AlertDialog.Builder(requireContext())
+                        alert.setTitle("Comment")
+                        val input = EditText(requireContext())
+                        input.hint = "Enter you comment"
+                        input.gravity = Gravity.START
+                        alert.setView(input)
+                        alert.setPositiveButton(android.R.string.ok) { dialogInterface, _ ->
+                            val com = Comment(input.text.toString(), currentUser, commentSection.id)
+                            uploadComment(com, commentSection, item)
+                            dialogInterface.cancel()
+                        }
+                        alert.setNegativeButton(android.R.string.cancel) { dialogInterface, _ ->
+                            dialogInterface.cancel()
+                        }
+                        alert.show()
+                    } else {
+
                     }
-                    alert.setNegativeButton(android.R.string.cancel) { dialogInterface, _ ->
-                        dialogInterface.cancel()
-                    }
-                    alert.show()
                 }
             })
         comRec.layoutManager = LinearLayoutManager(requireContext())

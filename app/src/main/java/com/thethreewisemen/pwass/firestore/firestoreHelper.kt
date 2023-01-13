@@ -59,6 +59,29 @@ fun getPosts(adapter : RecyclerAdapter){
         Log.d(TAG, "failed getting all posts")
     }
 }
+fun refreshComments(section : CommentSection, adapter: CommentsAdapter, refresher: SwipeRefreshLayout) = runBlocking{
+    launch {
+        val db = Firebase.firestore
+        section.comments.clear()
+        db.collection(comSecCol).document(section.id).collection("comments").get()
+            .addOnSuccessListener {  snapshot ->
+                for (item in snapshot) {
+                    val comment = item.toObject(Comment::class.java)
+                    comment.sectionId = section.id
+                    comment.fireId = item.id
+                    getChild(comment, section, arrayListOf())
+                    section.comments.add(comment)
+                }
+                adapter.updateItems(section.comments)
+                refresher.isRefreshing = false
+            }
+            .addOnFailureListener {
+                Log.d(TAG, "failed getting comments: ${it.message}")
+            }
+        Log.d(TAG, "updated items: ${section.comments}")
+
+    }
+}
 
 fun getComments(section : CommentSection, adapter: CommentsAdapter) = runBlocking{
     launch {
@@ -99,6 +122,7 @@ private fun getChild(comment: Comment, section: CommentSection , index : ArrayLi
     }
 }
 
+
 fun uploadComment(comment: Comment, comSec : CommentSection, parent : Comment?) {
     val db = Firebase.firestore
     if (parent != null){
@@ -137,7 +161,6 @@ private fun uploadChildComment(indexs: ArrayList<Int>, comment: Comment, parent:
     } else {
         parent.child.add(comment)
     }
-
-
 }
+
 

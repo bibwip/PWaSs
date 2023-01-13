@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.thethreewisemen.pwass.R
 import com.thethreewisemen.pwass.firestore.postsCol
+import com.thethreewisemen.pwass.firestore.uploadComment
 import com.thethreewisemen.pwass.objects.Comment
 import com.thethreewisemen.pwass.objects.Post
 
@@ -27,7 +28,12 @@ class CommentsAdapter(val context: Context, private var comments: MutableList<Co
             val comment = comments[position]
             holder.userName.text = comment.userName
             holder.text.text = comment.text
-            holder.reply.setOnClickListener { listener.onItemClick(comment, position)}
+            holder.reply.setOnClickListener { listener.onItemClick(comment, position, 0)}
+            holder.like.setOnClickListener {
+                if (!holder.liked) {
+                    listener.onItemClick(comment, position, 1)
+                }
+            }
             if (comment.child.isNotEmpty()){
                 holder.child.layoutManager = LinearLayoutManager(context)
                 holder.child.adapter = InnerAdapter(comment.child)
@@ -44,7 +50,7 @@ class CommentsAdapter(val context: Context, private var comments: MutableList<Co
     }
 
     interface OnItemClickListener {
-        fun onItemClick(item: Comment?, position: Int)
+        fun onItemClick(item: Comment?, position: Int, type : Int)
     }
 
     fun updateItems(newCom :ArrayList<Comment>) {
@@ -58,6 +64,8 @@ class CommentsAdapter(val context: Context, private var comments: MutableList<Co
         val userName : TextView= itemView.findViewById(R.id.comUsernameTv)
         val child: RecyclerView = itemView.findViewById(R.id.comRecComments)
         val reply: ImageButton = itemView.findViewById(R.id.comReplyBtn)
+        val like: ImageButton = itemView.findViewById(R.id.comlikeBtn)
+        val liked = false
 
     }
 
@@ -72,7 +80,7 @@ class CommentsAdapter(val context: Context, private var comments: MutableList<Co
             if (childCom.isNotEmpty()){
                 val comment = childCom[position]
                 holder.userName.text = comment.userName
-                holder.reply.setOnClickListener { listener.onItemClick(comment, position)}
+                holder.reply.setOnClickListener { listener.onItemClick(comment, position, 0)}
                 holder.text.text = comment.text
                 if (comment.child.isNotEmpty()){
                     holder.child.layoutManager = LinearLayoutManager(context)
