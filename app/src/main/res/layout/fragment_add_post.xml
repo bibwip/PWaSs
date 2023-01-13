@@ -15,7 +15,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:gravity="center_horizontal"
         android:hint="@string/Titlepost"
         android:textAlignment="center"
         android:textSize="@dimen/text_size"
@@ -43,11 +42,12 @@
 
     <EditText
         android:id="@+id/addPostBesEt"
+        android:background= "@drawable/text_border"
         android:layout_width="wrap_content"
+        android:padding="6dp"
         android:minWidth="312dp"
         android:layout_height="119dp"
         android:hint="Add caption"
-        android:textColorHint="#78909C"
         android:gravity="top"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
