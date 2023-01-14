@@ -9,20 +9,18 @@
 
     <TextView
         android:id="@+id/welkomtext"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_width="349dp"
+        android:layout_height="83dp"
         android:layout_marginTop="180dp"
+        android:autoSizeTextType="uniform"
         android:text="@string/welkomTekst"
         android:textSize="40dp"
         app:autoSizeMaxTextSize="100dp"
         app:autoSizeMinTextSize="12dp"
         app:autoSizeStepGranularity="2sp"
-        android:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <Button
         android:id="@+id/volgendeBtnWel"

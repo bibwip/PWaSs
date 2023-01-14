@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="No">Nee</string>
+    <string name="next">Volgende</string>
+    <string name="welkomTekst">Welkom in onze app!</string>
+    <string name="naamTekst">" Vul hier je gebruikersnaam in "</string>
+    <string name="user">" Gebruikersnaam"</string>
+    <string name="add">" Toevoegen"</string>
+    <string name="New_post">Nieuwe post</string>
+    <string name="Post">Nieuwe post</string>
+    <string name="Makepost">Maak een post</string>
+    <string name="Make">Maak een post</string>
+    <string name="Upload">Uploaden</string>
+    <string name="Uploadfoto">Uploaden</string>
+    <string name="Commentplek">Reacties</string>
+    <string name="commentsplek">Reacties</string>
+    <string name="Addknop">Toevoegen</string>
+    <string name="settings">Instellingen</string>
+    <string name="appTheme">Thema</string>
+    <string name="customTheme">Persoonlijk thema</string>
+    <string name="colorPrimary">Primaire kleur</string>
+    <string name="colorSec">Secundaire kleur</string>
+    <string name="colorBack">Achtergrond kleur</string>
+    <string name="colorPost">Achtergrond kleur post</string>
+    <string name="username">Gebruikersnaam</string>
+    <string name="usernamepost">Gebruikersnaam</string>
+    <string name="Titlepost">Titel</string>
+    <string name="Beschrijvingpost">Beschrijving</string>
+    <string name="beschrijvingpost">Beschrijving</string>
+    <string name="apply">Thema veranderingen toepassen</string>
+    <string name="aanpassen_naam">Gebruikersnaam kan aangepast worden</string>
+    <string name="PickAColour">Kies een kleur</string>
+    <string name="JA">Ja</string>
+</resources>

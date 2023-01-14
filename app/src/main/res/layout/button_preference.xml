@@ -6,9 +6,9 @@
     android:gravity="center_horizontal">
 
     <Button
+        android:id="@+id/prefButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/apply"
-        android:id="@+id/prefButton"/>
+        android:text="@string/apply" />
 
 </LinearLayout>

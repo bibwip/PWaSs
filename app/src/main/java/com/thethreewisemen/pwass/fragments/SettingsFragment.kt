@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.preference.CheckBoxPreference
 import androidx.preference.EditTextPreference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
@@ -68,7 +67,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         prefColPri!!.setOnPreferenceClickListener {
             ColorPickerDialogBuilder
                 .with(requireActivity())
-                .setTitle(R.string.pickColor)
+                .setTitle(R.string)
                 .initialColor(Color.parseColor(main.colorPrimary))
                 .wheelType(ColorPickerView.WHEEL_TYPE.CIRCLE)
                 .density(12)
@@ -88,7 +87,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         prefColSec!!.setOnPreferenceClickListener {
             ColorPickerDialogBuilder
                 .with(requireActivity())
-                .setTitle(R.string.pickColor)
+                .setTitle(R.string)
                 .initialColor(Color.parseColor(main.colorPrimaryVariant))
                 .wheelType(ColorPickerView.WHEEL_TYPE.CIRCLE)
                 .density(12)
@@ -108,7 +107,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         prefColBack!!.setOnPreferenceClickListener {
             ColorPickerDialogBuilder
                 .with(requireActivity())
-                .setTitle(R.string.pickColor)
+                .setTitle(R.string)
                 .initialColor(Color.parseColor(main.colorBack))
                 .wheelType(ColorPickerView.WHEEL_TYPE.CIRCLE)
                 .density(12)
@@ -128,7 +127,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         prefColPost!!.setOnPreferenceClickListener {
             ColorPickerDialogBuilder
                 .with(requireActivity())
-                .setTitle(R.string.pickColor)
+                .setTitle(R.string)
                 .initialColor(Color.parseColor(main.colorPost))
                 .wheelType(ColorPickerView.WHEEL_TYPE.CIRCLE)
                 .density(12)
