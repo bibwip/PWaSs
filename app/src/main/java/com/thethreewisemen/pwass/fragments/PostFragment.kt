@@ -7,18 +7,17 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.thethreewisemen.pwass.MainActivity
 import com.thethreewisemen.pwass.R
 import com.thethreewisemen.pwass.adapters.CommentsAdapter
-import com.thethreewisemen.pwass.helpers.getComments
-import com.thethreewisemen.pwass.helpers.hideKeyboard
-import com.thethreewisemen.pwass.helpers.likeComment
-import com.thethreewisemen.pwass.helpers.uploadComment
+import com.thethreewisemen.pwass.helpers.*
 import com.thethreewisemen.pwass.objects.Comment
 import com.thethreewisemen.pwass.objects.CommentSection
 
@@ -39,6 +38,7 @@ class PostFragment : Fragment(R.layout.fragment_post) {
         val comRec = view.findViewById<RecyclerView>(R.id.postComRec)
         val comTxt = view.findViewById<EditText>(R.id.postComEt)
         val comBtn = view.findViewById<Button>(R.id.postComButton)
+        val refresher = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefreshComment)
 
 
         val commentSection = CommentSection(args.commentSectionId, arrayListOf())
@@ -72,9 +72,19 @@ class PostFragment : Fragment(R.layout.fragment_post) {
                     }
                 }
             })
+
+
+
+
         comRec.layoutManager = LinearLayoutManager(requireContext())
         comRec.adapter = adapter
         getComments(commentSection, adapter)
+
+        refresher.setOnRefreshListener {
+            refreshComments(commentSection, adapter, refresher)
+            refresher.isRefreshing = true
+        }
+
 
         comBtn.setOnClickListener {
             val com = Comment(comTxt.text.toString(), "bobbie", commentSection.id)

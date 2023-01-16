@@ -47,7 +47,7 @@ fun uploadPost(post: Post)  {
     }
 }
 
-fun getPosts(adapter : RecyclerAdapter){
+fun getPosts(adapter: RecyclerAdapter){
     val posts = arrayListOf<Post>()
     val query = Firebase.firestore.collection(postsCol)
     query.orderBy("datum", Query.Direction.DESCENDING).get().addOnSuccessListener { snapshot ->
