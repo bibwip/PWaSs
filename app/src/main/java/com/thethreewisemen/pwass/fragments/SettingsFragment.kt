@@ -6,9 +6,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.preference.EditTextPreference
 import androidx.preference.PreferenceCategory
-import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.flask.colorpicker.ColorPickerView
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder
@@ -22,6 +20,9 @@ import com.thethreewisemen.pwass.MainActivity.Companion.USERNAME
 import com.thethreewisemen.pwass.R
 import com.thethreewisemen.pwass.objects.ButtonPreference
 import com.thethreewisemen.pwass.objects.ColorPreference
+import com.thethreewisemen.pwass.objects.CustomPrefCat
+import androidx.preference.EditTextPreference
+import androidx.preference.PreferenceFragmentCompat
 
 
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -36,38 +37,46 @@ class SettingsFragment : PreferenceFragmentCompat() {
         val main = activity as MainActivity
 
         val prefCustomTheme = findPreference<SwitchPreference>("customTheme")
-        val prefApply = findPreference<ButtonPreference>("applyTheme")
-        val prefColPri = findPreference<ColorPreference>("colorPrimary")
-        val prefColSec = findPreference<ColorPreference>("colorSec")
-        val prefColBack = findPreference<ColorPreference>("colorBack")
-        val prefColPost = findPreference<ColorPreference>("colorPost")
-        val prefUsername = findPreference<EditTextPreference>("userName")
+        val colorCat = findPreference<CustomPrefCat>("colorCat")!!
+        val prefApply = findPreference<ButtonPreference>("applyTheme")!!
+        val prefColPri = findPreference<ColorPreference>("colorPrimary")!!
+        val prefColSec = findPreference<ColorPreference>("colorSec")!!
+        val prefColBack = findPreference<ColorPreference>("colorBack")!!
+        val prefColPost = findPreference<ColorPreference>("colorPost")!!
+        val prefUsername = findPreference<EditTextPreference>("userName")!!
 
-        prefUsername!!.text = prefs.getString(USERNAME, "")
+
+
+        colorCat.setColor(Color.parseColor(main.colorPrimary))
+        prefApply.setColor(Color.parseColor(main.colorPrimary))
+
+        prefUsername.text = prefs.getString(USERNAME, "")
 
 
         findPreference<PreferenceCategory>("colorCat")!!.isVisible = prefCustomTheme!!.isChecked
 
-        prefApply?.setClickListener(View.OnClickListener {
+        prefApply.setClickListener(View.OnClickListener {
             val refresh = Intent(activity, MainActivity::class.java)
             startActivity(refresh)
         })
 
-        prefCustomTheme.setOnPreferenceChangeListener { preference, n ->
-            findPreference<PreferenceCategory>("colorCat")!!.isVisible =
-                !findPreference<PreferenceCategory>("colorCat")!!.isVisible
+        prefCustomTheme.setOnPreferenceChangeListener { _, n ->
+           colorCat.isVisible = !colorCat.isVisible
             prefs.edit().putBoolean(MainActivity.HASCUSTOMTHEME, n.toString().toBoolean()).apply()
             true
         }
 
-        if (prefCustomTheme.isChecked){
-            prefColPri!!.setColor(Color.parseColor(main.colorPrimary))
-        }
 
-        prefColPri!!.setOnPreferenceClickListener {
+        prefColPri.setColor(Color.parseColor(main.colorPrimary))
+        prefColSec.setColor(Color.parseColor(main.colorPrimaryVariant))
+        prefColPost.setColor(Color.parseColor(main.colorPost))
+        prefColBack.setColor(Color.parseColor(main.colorPrimary))
+
+
+        prefColPri.setOnPreferenceClickListener {
             ColorPickerDialogBuilder
                 .with(requireActivity())
-                .setTitle(R.string)
+                .setTitle(R.string.PickAColour)
                 .initialColor(Color.parseColor(main.colorPrimary))
                 .wheelType(ColorPickerView.WHEEL_TYPE.CIRCLE)
                 .density(12)
@@ -84,10 +93,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 .show()
             true
         }
-        prefColSec!!.setOnPreferenceClickListener {
+        prefColSec.setOnPreferenceClickListener {
             ColorPickerDialogBuilder
                 .with(requireActivity())
-                .setTitle(R.string)
+                .setTitle(R.string.PickAColour)
                 .initialColor(Color.parseColor(main.colorPrimaryVariant))
                 .wheelType(ColorPickerView.WHEEL_TYPE.CIRCLE)
                 .density(12)
@@ -104,10 +113,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 .show()
             true
         }
-        prefColBack!!.setOnPreferenceClickListener {
+        prefColBack.setOnPreferenceClickListener {
             ColorPickerDialogBuilder
                 .with(requireActivity())
-                .setTitle(R.string)
+                .setTitle(R.string.PickAColour)
                 .initialColor(Color.parseColor(main.colorBack))
                 .wheelType(ColorPickerView.WHEEL_TYPE.CIRCLE)
                 .density(12)
@@ -124,10 +133,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 .show()
             true
         }
-        prefColPost!!.setOnPreferenceClickListener {
+        prefColPost.setOnPreferenceClickListener {
             ColorPickerDialogBuilder
                 .with(requireActivity())
-                .setTitle(R.string)
+                .setTitle(R.string.PickAColour)
                 .initialColor(Color.parseColor(main.colorPost))
                 .wheelType(ColorPickerView.WHEEL_TYPE.CIRCLE)
                 .density(12)

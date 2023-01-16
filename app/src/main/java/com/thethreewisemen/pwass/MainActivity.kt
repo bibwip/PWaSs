@@ -1,9 +1,11 @@
 package com.thethreewisemen.pwass
 
 import android.content.SharedPreferences
+import android.content.res.TypedArray
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -11,8 +13,6 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
-import android.widget.TextView
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -60,11 +60,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setColors(prefs: SharedPreferences) {
+        val typedValuePrim = TypedValue()
+        val typedValueSec = TypedValue()
+        val typedValueBack = TypedValue()
+        val typedValuePost = TypedValue()
+        theme.resolveAttribute(androidx.appcompat.R.attr.colorPrimary, typedValuePrim, true)
+        theme.resolveAttribute(androidx.appcompat.R.attr.colorAccent, typedValueSec, true)
+        theme.resolveAttribute(androidx.appcompat.R.attr.backgroundTint, typedValueBack, true)
+        theme.resolveAttribute(androidx.cardview.R.attr.cardViewStyle, typedValuePost, true)
 
-        colorPrimary = prefs.getString(COLORPRIMARY, "#eb40ff34")!!
-        colorPrimaryVariant = prefs.getString(COLORPRIMARYVAR, "#eb403ff4")!!
-        colorBack = prefs.getString(COLORBACK, "#eb40ff34")!!
-        colorPost = prefs.getString(COLORPOST, "#eb4f0f34")!!
+        colorPrimary = prefs.getString(COLORPRIMARY, "#" + Integer.toHexString(typedValuePrim.data))!!
+        colorPrimaryVariant = prefs.getString(COLORPRIMARYVAR, "#" + Integer.toHexString(typedValueSec.data))!!
+        colorBack = prefs.getString(COLORBACK, "#" + Integer.toHexString(typedValueBack.data))!!
+        colorPost = prefs.getString(COLORPOST, "#" + Integer.toHexString(typedValuePost.data))!!
 
     }
 

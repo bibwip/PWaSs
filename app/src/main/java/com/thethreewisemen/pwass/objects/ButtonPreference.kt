@@ -19,6 +19,7 @@ class ButtonPreference(context: Context, attrs: AttributeSet) :
     Preference(context, attrs) {
     private var button: Button? = null
     private var listener: OnClickListener? = null
+    private var bcolor= 0xFFFFF00
 
 
     //onBindViewHolder() will be called after we call setImageClickListener() from SettingsFragment
@@ -26,10 +27,16 @@ class ButtonPreference(context: Context, attrs: AttributeSet) :
         super.onBindViewHolder(holder)
         button = holder.findViewById(R.id.prefButton) as Button?
         button?.setOnClickListener(listener)
+        button?.setBackgroundColor(bcolor)
 
     }
 
     fun setClickListener(listen : OnClickListener) {
        listener = listen
+    }
+
+    fun setColor(color : Int) {
+        bcolor = color
+        notifyChanged()
     }
 }

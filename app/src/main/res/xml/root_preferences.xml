@@ -3,12 +3,12 @@
         app:key="userName"
         app:title="@string/username"/>
 
-    <PreferenceCategory app:title="@string/appTheme">
+    <com.thethreewisemen.pwass.objects.CustomPrefCat app:title="@string/appTheme">
         <SwitchPreference
             app:key="customTheme"
             app:title="@string/customTheme"
             />
-        <PreferenceCategory
+        <com.thethreewisemen.pwass.objects.CustomPrefCat
             app:key="colorCat">
             <com.thethreewisemen.pwass.objects.ColorPreference
                 app:key="colorPrimary"
@@ -31,12 +31,12 @@
                 app:layout="@layout/color_preference"
                 />
 
-        </PreferenceCategory>
+        </com.thethreewisemen.pwass.objects.CustomPrefCat>
 
         <com.thethreewisemen.pwass.objects.ButtonPreference
             app:key="applyTheme"
             app:layout="@layout/button_preference"/>
 
-    </PreferenceCategory>
+    </com.thethreewisemen.pwass.objects.CustomPrefCat>
 
 </PreferenceScreen>
