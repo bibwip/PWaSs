@@ -9,20 +9,32 @@
 
     <TextView
         android:id="@+id/welkomtext"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_width="349dp"
+        android:layout_height="83dp"
         android:layout_marginTop="180dp"
+        android:autoSizeTextType="uniform"
         android:text="@string/welkomTekst"
         android:textSize="40dp"
         app:autoSizeMaxTextSize="100dp"
         app:autoSizeMinTextSize="12dp"
         app:autoSizeStepGranularity="2sp"
-        android:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <TextView
+        android:id="@+id/aanpassingnaam"
+        android:layout_width="220dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="88dp"
+        android:gravity="center_horizontal"
+        android:text="@string/aanpassen_naam"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/volgendeBtnWel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/volgendeBtnWel"
