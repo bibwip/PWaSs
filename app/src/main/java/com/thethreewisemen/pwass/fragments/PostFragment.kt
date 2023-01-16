@@ -3,13 +3,12 @@ package com.thethreewisemen.pwass.fragments
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.Gravity
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -39,8 +38,6 @@ class PostFragment : Fragment(R.layout.fragment_post) {
         val comTxt = view.findViewById<EditText>(R.id.postComEt)
         val comBtn = view.findViewById<Button>(R.id.postComButton)
         val refresher = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefreshComment)
-
-
         val commentSection = CommentSection(args.commentSectionId, arrayListOf())
 
         title.text = args.postTitle
