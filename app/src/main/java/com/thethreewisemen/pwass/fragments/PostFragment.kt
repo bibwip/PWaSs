@@ -27,7 +27,6 @@ class PostFragment : Fragment(R.layout.fragment_post) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val prefs = requireActivity().getSharedPreferences(MainActivity.PREFS_NAME, AppCompatActivity.MODE_PRIVATE)
         val currentUser = prefs.getString(MainActivity.USERNAME, "")!!
 
@@ -37,7 +36,8 @@ class PostFragment : Fragment(R.layout.fragment_post) {
         val comRec = view.findViewById<RecyclerView>(R.id.postComRec)
         val comTxt = view.findViewById<EditText>(R.id.postComEt)
         val comBtn = view.findViewById<Button>(R.id.postComButton)
-        val refresher = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefreshComment)
+
+
         val commentSection = CommentSection(args.commentSectionId, arrayListOf())
 
         title.text = args.postTitle
@@ -69,22 +69,13 @@ class PostFragment : Fragment(R.layout.fragment_post) {
                     }
                 }
             })
-
-
-
-
         comRec.layoutManager = LinearLayoutManager(requireContext())
         comRec.adapter = adapter
         getComments(commentSection, adapter)
 
-        refresher.setOnRefreshListener {
-            refreshComments(commentSection, adapter, refresher)
-            refresher.isRefreshing = true
-        }
-
-
         comBtn.setOnClickListener {
-            val com = Comment(comTxt.text.toString(), "bobbie", commentSection.id)
+            val com = Comment(comTxt.text.toString(),
+                prefs.getString(MainActivity.USERNAME, "Santos")!!, commentSection.id)
             uploadComment(com, commentSection, null)
             comTxt.text.clear()
             hideKeyboard()

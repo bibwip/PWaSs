@@ -11,6 +11,8 @@
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
             android:id="@+id/action_welcomeFragment_to_volgendeFrag"
             app:destination="@id/volgendeFrag" />
     </fragment>
@@ -20,6 +22,8 @@
         android:label="fragment_volgende"
         tools:layout="@layout/fragment_volgende" >
         <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
             android:id="@+id/action_volgendeFrag_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
@@ -43,10 +47,13 @@
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_mainFragment_to_addPostFragment"
-            app:destination="@id/addPostFragment"/>
+            app:destination="@id/addPostFragment"
+            app:enterAnim="@anim/scale_out_right_bottom" />
         <action
             android:id="@+id/action_mainFragment_to_postFragment"
-            app:destination="@id/postFragment"/>
+            app:destination="@id/postFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
 
 <fragment
@@ -66,7 +73,12 @@ tools:layout="@layout/fragment_post">
     <argument
         android:name="commentSectionId"
         app:argType="string" />
-    </fragment>
+    <action
+        android:id="@+id/action_postFragment_to_mainFragment"
+        app:destination="@id/mainFragment"
+        app:enterAnim="@anim/slide_in_left"
+        app:exitAnim="@anim/slide_out_right" />
+</fragment>
 
 
 
