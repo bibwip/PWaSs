@@ -36,6 +36,8 @@ class PostFragment : Fragment(R.layout.fragment_post) {
         val comRec = view.findViewById<RecyclerView>(R.id.postComRec)
         val comTxt = view.findViewById<EditText>(R.id.postComEt)
         val comBtn = view.findViewById<Button>(R.id.postComButton)
+        val refresh = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefreshComment)
+
 
 
         val commentSection = CommentSection(args.commentSectionId, arrayListOf())
@@ -72,6 +74,10 @@ class PostFragment : Fragment(R.layout.fragment_post) {
         comRec.layoutManager = LinearLayoutManager(requireContext())
         comRec.adapter = adapter
         getComments(commentSection, adapter)
+
+        refresh.setOnRefreshListener {
+            refreshComments(commentSection, adapter, refresh)
+        }
 
         comBtn.setOnClickListener {
             val com = Comment(comTxt.text.toString(),
