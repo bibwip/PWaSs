@@ -2,10 +2,6 @@
     <string name="app_name" translatable="false">PWaSs</string>
     <!-- TODO: Remove or change this placeholder text -->
 
-
-
-
-
     <!-- Preference Titles -->
     <string name="messages_header" translatable="false">Messages</string>
     <string name="sync_header" translatable="false">Sync</string>

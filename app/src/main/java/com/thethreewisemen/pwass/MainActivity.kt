@@ -38,14 +38,13 @@ class MainActivity : AppCompatActivity() {
 
         hasCustomTheme = (prefs.getBoolean(HASCUSTOMTHEME, false))
         setColors(prefs)
-        //checkFirstRun(prefs)
 
         if (hasCustomTheme) {
             supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(colorPrimary)))
             window.statusBarColor = Color.parseColor(colorPrimaryVariant)
         }
 
-
+        checkFirstRun(prefs)
 
 
     }
@@ -76,21 +75,21 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-//    private fun checkFirstRun(prefs : SharedPreferences) {
-//        // pakt de huidige versie en de bewaarde versie codes
-//        val currentVersionCode = BuildConfig.VERSION_CODE
-//        val savedVersionCode = prefs.getInt(PREF_VERSION_CODE_KEY, DOESNT_EXIST)
-//
-//        if (currentVersionCode == savedVersionCode) {
-//            // niks nieuws
-//            return
-//        } else if (savedVersionCode == DOESNT_EXIST || currentVersionCode > savedVersionCode) {
-//            // app voor het eerst geopend of nieuwe update
-//            //navController.navigate(R.id.)
-//        }
-//        // bewaar huidige versie code
-//        prefs.edit().putInt(PREF_VERSION_CODE_KEY, currentVersionCode).apply()
-//    }
+    private fun checkFirstRun(prefs : SharedPreferences) {
+        // pakt de huidige versie en de bewaarde versie codes
+        val currentVersionCode = BuildConfig.VERSION_CODE
+        val savedVersionCode = prefs.getInt(PREF_VERSION_CODE_KEY, DOESNT_EXIST)
+
+        if (currentVersionCode == savedVersionCode) {
+            // niks nieuws
+            return
+        } else if (savedVersionCode == DOESNT_EXIST || currentVersionCode > savedVersionCode) {
+            // app voor het eerst geopend of nieuwe update
+            navController.navigate(R.id.welcomeFragment)
+        }
+        // bewaar huidige versie code
+        prefs.edit().putInt(PREF_VERSION_CODE_KEY, currentVersionCode).apply()
+    }
 
     companion object {
         const val TAG = "epic"

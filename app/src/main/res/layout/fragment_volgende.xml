@@ -4,46 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
     tools:context=".fragments.WelcomeFragment">
 
     <TextView
         android:id="@+id/TutorialTextTV"
+        android:layout_height="60dp"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="5dp"
-        android:layout_marginTop="52dp"
+        android:gravity="center"
         android:autoSizeTextType="uniform"
         android:text="@string/naamTekst"
-        android:textSize="20dp"
         app:autoSizeMaxTextSize="100dp"
-        app:autoSizeMinTextSize="12dp"
+        app:autoSizeMinTextSize="20sp"
+        android:layout_marginHorizontal="16dp"
         app:autoSizeStepGranularity="2sp"
+        app:layout_constraintBottom_toTopOf="@+id/usernameFrag"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
-        android:text="@string/user"
-        app:layout_constraintEnd_toStartOf="@+id/BtnTutorialYes"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:text="@string/aanpassen_naam"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TutorialTextTV" />
 
-    <Button
-        android:id="@+id/BtnTutorialYes"
+    <EditText
+        android:id="@+id/usernameFrag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:hint="@string/user"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/usernameFragbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/add"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/usernameFrag" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
