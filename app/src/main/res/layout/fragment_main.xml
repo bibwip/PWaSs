@@ -11,11 +11,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:elevation="7dp"
+        android:tint="?colorPrimary"
         app:borderWidth="0dp"
         android:id="@+id/mainAddPostBtn"
         android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/Upload" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshPost"

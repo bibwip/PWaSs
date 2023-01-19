@@ -2,7 +2,6 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
     app:startDestination="@id/mainFragment">
 
     <fragment
@@ -63,23 +62,26 @@ android:label="fragment_post"
 tools:layout="@layout/fragment_post">
     <argument
         android:name="postUsername"
-        app:argType="string" />
+        app:argType="string"/>
     <argument
         android:name="postTitle"
-        app:argType="string" />
+        app:argType="string"/>
     <argument
         android:name="postBes"
-        app:argType="string" />
+        app:argType="string"/>
     <argument
         android:name="commentSectionId"
-        app:argType="string" />
+        app:argType="string"/>
     <action
         android:id="@+id/action_postFragment_to_mainFragment"
         app:destination="@id/mainFragment"
         app:enterAnim="@anim/slide_in_left"
         app:exitAnim="@anim/slide_out_right" />
+    <argument
+        android:name="commentText"
+        app:argType="string"
+        app:nullable="true" />
 </fragment>
-
 
 
 </navigation>

@@ -1,5 +1,6 @@
 package com.thethreewisemen.pwass.adapters
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,7 @@ import com.thethreewisemen.pwass.R
 import com.thethreewisemen.pwass.objects.Post
 
 
-class RecyclerAdapter (var posts: ArrayList<Post>, val main : MainActivity, val listener: OnItemClickListener)
+class RecyclerAdapter (private var posts: ArrayList<Post>, private val main : MainActivity, private val listener: OnItemClickListener)
     : RecyclerView.Adapter<RecyclerAdapter.PostViewHolder>() {
 
 
@@ -34,6 +35,7 @@ class RecyclerAdapter (var posts: ArrayList<Post>, val main : MainActivity, val 
         return posts.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateItems(items : ArrayList<Post>) {
         posts = items
         notifyDataSetChanged()

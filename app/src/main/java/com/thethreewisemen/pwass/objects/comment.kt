@@ -1,7 +1,5 @@
 package com.thethreewisemen.pwass.objects
 
-import android.graphics.Bitmap
-
 
 data class Comment(
     var parent: String? = null,

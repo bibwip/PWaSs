@@ -37,7 +37,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                             item.naam_poster,
                             item.titel,
                             item.beschrijving,
-                            item.commentSection.id
+                            item.commentSection.id,
+                            null
                         )
                         findNavController().navigate(action)
                     }
@@ -59,7 +60,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
 
         if (main.hasCustomTheme) {
-            mainAddPostBtn.backgroundTintList = ColorStateList.valueOf(Color.parseColor(main.colorPrimary));
+            mainAddPostBtn.backgroundTintList = ColorStateList.valueOf(Color.parseColor(main.colorPrimary))
         }
 
 

@@ -2,10 +2,8 @@ package com.thethreewisemen.pwass.objects
 
 
 import android.content.Context
-import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
-import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.preference.Preference

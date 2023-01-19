@@ -6,13 +6,18 @@ import android.view.Gravity
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.thethreewisemen.pwass.MainActivity
 import com.thethreewisemen.pwass.R
 import com.thethreewisemen.pwass.adapters.CommentsAdapter
@@ -23,7 +28,7 @@ import com.thethreewisemen.pwass.objects.CommentSection
 
 class PostFragment : Fragment(R.layout.fragment_post) {
 
-    val args : PostFragmentArgs by navArgs()
+    private val args : PostFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,10 +40,26 @@ class PostFragment : Fragment(R.layout.fragment_post) {
         val bes = view.findViewById<TextView>(R.id.postBeschrijvingTv)
         val comRec = view.findViewById<RecyclerView>(R.id.postComRec)
         val comTxt = view.findViewById<EditText>(R.id.postComEt)
-        val comBtn = view.findViewById<Button>(R.id.postComButton)
+        val comBtn = view.findViewById<FloatingActionButton>(R.id.postComButton)
         val refresh = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefreshComment)
+        val comBigTxt = view.findViewById<EditText>(R.id.postComEtField)
+        var tempParent : Comment? = null
 
 
+
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true ) {
+                override fun handleOnBackPressed() {
+                    if (view.findViewById<FrameLayout>(R.id.postFragComField).visibility == View.VISIBLE) {
+                        view.findViewById<FrameLayout>(R.id.postFragComField).visibility = View.GONE
+                        view.findViewById<FrameLayout>(R.id.postFragMain).visibility = View.VISIBLE
+                    }else {
+                        val action = PostFragmentDirections.actionPostFragmentToMainFragment()
+                        view.findNavController().navigate(action)
+                    }
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
 
         val commentSection = CommentSection(args.commentSectionId, arrayListOf())
 
@@ -46,26 +67,13 @@ class PostFragment : Fragment(R.layout.fragment_post) {
         userName.text = args.postUsername
         bes.text = args.postBes
 
-
         val adapter = CommentsAdapter(requireContext(), arrayListOf(),
             object : CommentsAdapter.OnItemClickListener {
                 override fun onItemClick(item: Comment?, position: Int, type: Int, parent : Comment?) {
                     if (type == 0) {
-                        val alert = AlertDialog.Builder(requireContext())
-                        alert.setTitle("Comment")
-                        val input = EditText(requireContext())
-                        input.hint = "Enter you comment"
-                        input.gravity = Gravity.START
-                        alert.setView(input)
-                        alert.setPositiveButton(android.R.string.ok) { dialogInterface, _ ->
-                            val com = Comment(input.text.toString(), currentUser, commentSection.id)
-                            uploadComment(com, commentSection, item)
-                            dialogInterface.cancel()
-                        }
-                        alert.setNegativeButton(android.R.string.cancel) { dialogInterface, _ ->
-                            dialogInterface.cancel()
-                        }
-                        alert.show()
+                        view.findViewById<FrameLayout>(R.id.postFragComField).visibility = View.VISIBLE
+                        view.findViewById<FrameLayout>(R.id.postFragMain).visibility = View.GONE
+                        tempParent = item
                     } else {
                         likeComment(item!!, item.sectionId)
                     }
@@ -80,11 +88,17 @@ class PostFragment : Fragment(R.layout.fragment_post) {
         }
 
         comBtn.setOnClickListener {
-            val com = Comment(comTxt.text.toString(),
-                prefs.getString(MainActivity.USERNAME, "Santos")!!, commentSection.id)
-            uploadComment(com, commentSection, null)
-            comTxt.text.clear()
-            hideKeyboard()
+            view.findViewById<FrameLayout>(R.id.postFragComField).visibility = View.GONE
+            view.findViewById<FrameLayout>(R.id.postFragMain).visibility = View.VISIBLE
+            val com = Comment(comBigTxt.text.toString(), currentUser, commentSection.id)
+            if (tempParent != null) uploadComment(com, commentSection, tempParent)
+            else uploadComment(com, commentSection, null)
+            comBigTxt.text.clear()
+        }
+
+        comTxt.setOnClickListener {
+            view.findViewById<FrameLayout>(R.id.postFragComField).visibility = View.VISIBLE
+            view.findViewById<FrameLayout>(R.id.postFragMain).visibility = View.GONE
         }
     }
 }

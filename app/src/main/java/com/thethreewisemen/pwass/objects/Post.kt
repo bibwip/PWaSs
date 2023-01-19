@@ -1,9 +1,6 @@
 package com.thethreewisemen.pwass.objects
 
 import android.graphics.Bitmap
-import com.google.firebase.Timestamp
-import java.util.*
-import kotlin.math.min
 
 
 data class Post(

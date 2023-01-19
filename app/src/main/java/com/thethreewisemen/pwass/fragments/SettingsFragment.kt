@@ -27,7 +27,7 @@ import androidx.preference.PreferenceFragmentCompat
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
-    lateinit var prefs : SharedPreferences
+    private lateinit var prefs : SharedPreferences
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
@@ -55,7 +55,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         findPreference<PreferenceCategory>("colorCat")!!.isVisible = prefCustomTheme!!.isChecked
 
-        prefApply.setClickListener(View.OnClickListener {
+        prefApply.setClickListener({
             val refresh = Intent(activity, MainActivity::class.java)
             startActivity(refresh)
         })

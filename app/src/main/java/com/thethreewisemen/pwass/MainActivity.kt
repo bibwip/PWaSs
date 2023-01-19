@@ -1,7 +1,6 @@
 package com.thethreewisemen.pwass
 
 import android.content.SharedPreferences
-import android.content.res.TypedArray
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -13,7 +12,6 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
-import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -92,7 +90,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val TAG = "epic"
 
         const val PREF_VERSION_CODE_KEY = "version_code"
         const val DOESNT_EXIST = -1

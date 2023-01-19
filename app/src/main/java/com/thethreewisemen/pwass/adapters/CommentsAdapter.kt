@@ -1,5 +1,6 @@
 package com.thethreewisemen.pwass.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -46,14 +47,11 @@ class CommentsAdapter(val context: Context, private var comments: MutableList<Co
         return comments.size
     }
 
-    fun getItems() : MutableList<Comment>{
-        return comments
-    }
-
     interface OnItemClickListener {
         fun onItemClick(item: Comment?, position: Int, type : Int, parent: Comment?)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateItems(newCom :ArrayList<Comment>) {
         comments = newCom
         notifyDataSetChanged()

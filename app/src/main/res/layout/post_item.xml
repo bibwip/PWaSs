@@ -23,7 +23,6 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="3dp"
             android:layout_marginBottom="8dp"
-            android:text="Anoniem"
             android:textSize="15sp" />
 
         <TextView
@@ -53,7 +52,7 @@
             android:id="@+id/datumPost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentEnd="true" />
 
 
     </RelativeLayout>

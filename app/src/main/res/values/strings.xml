@@ -3,33 +3,17 @@
     <!-- TODO: Remove or change this placeholder text -->
 
     <!-- Preference Titles -->
-    <string name="messages_header" translatable="false">Messages</string>
-    <string name="sync_header" translatable="false">Sync</string>
-    <string name="No">" No"</string>
 
     <!-- Messages Preferences -->
-    <string name="signature_title" translatable="false">Your signature</string>
-    <string name="reply_title" translatable="false">Default reply action</string>
 
     <!-- Sync Preferences -->
-    <string name="sync_title" translatable="false">Sync email periodically</string>
-    <string name="attachment_title" translatable="false">Download incoming attachments</string>
-    <string name="attachment_summary_on" translatable="false">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off" translatable="false">Only download attachments when manually requested</string>
 
     <string name="next">"Next"</string>
 
 
-    <string name="New_post">"New post "</string>
-    <string name="Post">New post</string>
-    <string name="Makepost">Make post</string>
-    <string name="Make">"Make post "</string>
     <string name="Upload">"Upload "</string>
     <string name="Uploadfoto">Upload</string>
     <string name="Commentplek">Comment</string>
-    <string name="commentsplek">comments</string>
-    <string name="Addknop">Add</string>
 
     <string name="settings">Settings</string>
 
@@ -48,14 +32,13 @@
     <string name="Beschrijvingpost">Description</string>
     <string name="apply">Apply theme changes</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="welkomTekst">Welcome to our app!</string>
     <string name="naamTekst">"Fill in your username here "</string>
     <string name="user">Username</string>
     <string name="add">Add</string>
-    <string name="beschrijvingpost">Description</string>
     <string name="aanpassen_naam">Username is ajustible</string>
     <string name="PickAColour">Pick a colour</string>
-    <string name="JA">Yes</string>
+    <string name="content" translatable="false">....</string>
+    <string name="comment" translatable="false">Comment</string>
 
 </resources>

@@ -1,13 +1,12 @@
 package com.thethreewisemen.pwass.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.thethreewisemen.pwass.MainActivity
 import com.thethreewisemen.pwass.R
 

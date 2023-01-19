@@ -2,14 +2,9 @@ package com.thethreewisemen.pwass.objects
 
 
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View.OnClickListener
 import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.preference.Preference
 import androidx.preference.PreferenceViewHolder
 import com.thethreewisemen.pwass.R
