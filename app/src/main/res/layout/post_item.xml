@@ -6,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    app:cardBackgroundColor="#F8D496"
     app:cardCornerRadius="7dp"
+    android:maxHeight="50dp"
     android:focusable="true">
 
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="89dp"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp">
 
 
@@ -21,7 +21,6 @@
             android:id="@+id/postItemUserName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/postItemTitle"
             android:layout_marginEnd="3dp"
             android:layout_marginBottom="8dp"
             android:text="Anoniem"
@@ -31,7 +30,7 @@
             android:id="@+id/postItemTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/postItemBeschrijving"
+            android:layout_below="@+id/postItemUserName"
             android:layout_marginBottom="6dp"
             android:maxWidth="300sp"
             android:text="@string/Titlepost"
@@ -45,7 +44,7 @@
             android:id="@+id/postItemBeschrijving"
             android:layout_width="177dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@id/postItemTitle"
             android:layout_marginBottom="6dp"
             android:text="@string/Beschrijvingpost"
             android:textSize="16sp" />

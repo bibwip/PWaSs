@@ -27,6 +27,7 @@ class RecyclerAdapter (var posts: ArrayList<Post>, val main : MainActivity, val 
         holder.beschrijving.text = posts[position].beschrijving
         holder.datum.text = posts[position].getDate()
         holder.card.setOnClickListener { listener.onItemClick(posts[position], position) }
+        if (main.hasCustomTheme) holder.card.background.setTint(Color.parseColor(main.colorPost))
     }
 
     override fun getItemCount(): Int {
@@ -47,13 +48,12 @@ class RecyclerAdapter (var posts: ArrayList<Post>, val main : MainActivity, val 
         val title : TextView = itemView.findViewById(R.id.postItemTitle)
         val name : TextView = itemView.findViewById(R.id.postItemUserName)
         val beschrijving : TextView = itemView.findViewById(R.id.postItemBeschrijving)
-        val card : CardView = itemView.findViewById(R.id.postCard)
+        val card : CardView= itemView.findViewById(R.id.postCard)
         val datum : TextView = itemView.findViewById(R.id.datumPost)
 
-        init {
-            if (main.hasCustomTheme) itemView.findViewById<CardView>(R.id.postCard)
-                .setCardBackgroundColor(Color.parseColor(main.colorPost))
-        }
+//        init {
+//
+//        }
 
     }
 }

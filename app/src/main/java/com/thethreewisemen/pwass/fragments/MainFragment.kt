@@ -1,6 +1,8 @@
 package com.thethreewisemen.pwass.fragments
 
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -16,6 +18,7 @@ import com.thethreewisemen.pwass.adapters.RecyclerAdapter
 import com.thethreewisemen.pwass.helpers.getPosts
 import com.thethreewisemen.pwass.helpers.refreshPosts
 import com.thethreewisemen.pwass.objects.Post
+import kotlinx.android.synthetic.main.fragment_main.*
 
 
 class MainFragment : Fragment(R.layout.fragment_main) {
@@ -25,9 +28,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         val main = (activity as MainActivity)
         val button = view.findViewById<FloatingActionButton>(R.id.mainAddPostBtn)
         val refresher = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefreshPost)
-
-
-
 
         val adapter = RecyclerAdapter(arrayListOf(), main,
             object : RecyclerAdapter.OnItemClickListener {
@@ -58,7 +58,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             view.findNavController().navigate(action)
         }
 
-
+        if (main.hasCustomTheme) {
+            mainAddPostBtn.backgroundTintList = ColorStateList.valueOf(Color.parseColor(main.colorPrimary));
+        }
 
 
 
