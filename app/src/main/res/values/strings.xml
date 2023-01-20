@@ -1,12 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">PWaSs</string>
-    <!-- TODO: Remove or change this placeholder text -->
-
-    <!-- Preference Titles -->
-
-    <!-- Messages Preferences -->
-
-    <!-- Sync Preferences -->
+    <string name="app_name" translatable="false">Social Chat</string>
 
     <string name="next">"Next"</string>
 
