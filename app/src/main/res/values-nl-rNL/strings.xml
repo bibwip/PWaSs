@@ -19,7 +19,7 @@
     <string name="usernamepost">Gebruikersnaam</string>
     <string name="Titlepost">Titel</string>
     <string name="Beschrijvingpost">Beschrijving</string>
-    <string name="apply">Thema veranderingen toepassen</string>
+    <string name="apply">Thema toepassen</string>
     <string name="aanpassen_naam">Gebruikersnaam kan aangepast worden</string>
     <string name="PickAColour">Kies een kleur</string>
 </resources>
